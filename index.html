@@ -2,35 +2,18 @@
 <html>
 <head>
   <meta charset="utf-8">
-  <meta name="description"
-        content="Deformable Neural Radiance Fields creates free-viewpoint portraits (nerfies) from casually captured videos.">
-  <meta name="keywords" content="Nerfies, D-NeRF, NeRF">
+  <meta name="description" content="ReaDiT Guidance: Control for Image and Video Generation using Diffusion Transformer Features.">
+  <meta name="keywords" content="ReaDiT, Readout Guidance, Diffusion Transformer, DiT, Image Generation, Video Generation, ControlNet, Spatial Control, Motion Control">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Nerfies: Deformable Neural Radiance Fields</title>
+  <title>ReaDiT Guidance</title>
 
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-
-    function gtag() {
-      dataLayer.push(arguments);
-    }
-
-    gtag('js', new Date());
-
-    gtag('config', 'G-PYVRSFMDRL');
-  </script>
-
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
-        rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
 
   <link rel="stylesheet" href="./static/css/bulma.min.css">
   <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
   <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
   <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
-  <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
   <link rel="icon" href="./static/images/favicon.svg">
 
@@ -42,449 +25,440 @@
 </head>
 <body>
 
-<nav class="navbar" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
-  <div class="navbar-menu">
-    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
-      <a class="navbar-item" href="https://keunhong.com">
-      <span class="icon">
-          <i class="fas fa-home"></i>
-      </span>
-      </a>
 
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
-          More Research
-        </a>
-        <div class="navbar-dropdown">
-          <a class="navbar-item" href="https://hypernerf.github.io">
-            HyperNeRF
-          </a>
-          <a class="navbar-item" href="https://nerfies.github.io">
-            Nerfies
-          </a>
-          <a class="navbar-item" href="https://latentfusion.github.io">
-            LatentFusion
-          </a>
-          <a class="navbar-item" href="https://photoshape.github.io">
-            PhotoShape
-          </a>
-        </div>
-      </div>
-    </div>
-
-  </div>
-</nav>
-
-
+<!-- ============================================================
+     TITLE / AUTHORS / LINKS
+     ============================================================ -->
 <section class="hero">
   <div class="hero-body">
     <div class="container is-max-desktop">
       <div class="columns is-centered">
         <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">Nerfies: Deformable Neural Radiance Fields</h1>
-          <div class="is-size-5 publication-authors">
-            <span class="author-block">
-              <a href="https://keunhong.com">Keunhong Park</a><sup>1</sup>,</span>
-            <span class="author-block">
-              <a href="https://utkarshsinha.com">Utkarsh Sinha</a><sup>2</sup>,</span>
-            <span class="author-block">
-              <a href="https://jonbarron.info">Jonathan T. Barron</a><sup>2</sup>,
-            </span>
-            <span class="author-block">
-              <a href="http://sofienbouaziz.com">Sofien Bouaziz</a><sup>2</sup>,
-            </span>
-            <span class="author-block">
-              <a href="https://www.danbgoldman.com">Dan B Goldman</a><sup>2</sup>,
-            </span>
-            <span class="author-block">
-              <a href="https://homes.cs.washington.edu/~seitz/">Steven M. Seitz</a><sup>1,2</sup>,
-            </span>
-            <span class="author-block">
-              <a href="http://www.ricardomartinbrualla.com">Ricardo Martin-Brualla</a><sup>2</sup>
-            </span>
-          </div>
+
+          <h1 class="title is-1 publication-title">
+            ReaDiT Guidance: Control for Image and Video Generation<br>
+            using Diffusion Transformer Features
+          </h1>
 
           <div class="is-size-5 publication-authors">
-            <span class="author-block"><sup>1</sup>University of Washington,</span>
-            <span class="author-block"><sup>2</sup>Google Research</span>
+            <span class="author-block"><a href="#">Anonymous Authors</a></span>
           </div>
 
           <div class="column has-text-centered">
             <div class="publication-links">
-              <!-- PDF Link. -->
               <span class="link-block">
-                <a href="https://arxiv.org/pdf/2011.12948"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fas fa-file-pdf"></i>
-                  </span>
-                  <span>Paper</span>
-                </a>
+                <span class="external-link button is-normal is-rounded is-dark" style="opacity:0.65; cursor:default;">
+                  <span class="icon"><i class="ai ai-arxiv"></i></span>
+                  <span>arXiv (coming soon)</span>
+                </span>
               </span>
               <span class="link-block">
-                <a href="https://arxiv.org/abs/2011.12948"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="ai ai-arxiv"></i>
-                  </span>
-                  <span>arXiv</span>
-                </a>
+                <span class="external-link button is-normal is-rounded is-dark" style="opacity:0.65; cursor:default;">
+                  <span class="icon"><i class="fab fa-github"></i></span>
+                  <span>Code (coming soon)</span>
+                </span>
               </span>
-              <!-- Video Link. -->
-              <span class="link-block">
-                <a href="https://www.youtube.com/watch?v=MrKrnHhk8IA"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fab fa-youtube"></i>
-                  </span>
-                  <span>Video</span>
-                </a>
-              </span>
-              <!-- Code Link. -->
-              <span class="link-block">
-                <a href="https://github.com/google/nerfies"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fab fa-github"></i>
-                  </span>
-                  <span>Code</span>
-                  </a>
-              </span>
-              <!-- Dataset Link. -->
-              <span class="link-block">
-                <a href="https://github.com/google/nerfies/releases/tag/0.1"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="far fa-images"></i>
-                  </span>
-                  <span>Data</span>
-                  </a>
             </div>
-
           </div>
+
         </div>
       </div>
     </div>
   </div>
 </section>
 
+
+<!-- ============================================================
+     TEASER
+     figures/Teaser_fig.pdf
+     ============================================================ -->
 <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
-      <video id="teaser" autoplay muted loop playsinline height="100%">
-        <source src="./static/videos/teaser.mp4"
-                type="video/mp4">
-      </video>
-      <h2 class="subtitle has-text-centered">
-        <span class="dnerf">Nerfies</span> turns selfie videos from your phone into
-        free-viewpoint
-        portraits.
+      <img src="./static/images/Teaser_fig.png"
+           alt="ReaDiT teaser — figures/Teaser_fig.pdf"
+           style="width:100%;">
+      <h2 class="subtitle has-text-centered" style="margin-top:1rem;">
+        <em>Control image and video generation from a <strong>single</strong> frozen DiT block — no fine-tuning required.</em>
       </h2>
     </div>
   </div>
 </section>
 
 
-<section class="hero is-light is-small">
-  <div class="hero-body">
-    <div class="container">
-      <div id="results-carousel" class="carousel results-carousel">
-        <div class="item item-steve">
-          <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/steve.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-chair-tp">
-          <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/chair-tp.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-shiba">
-          <video poster="" id="shiba" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/shiba.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-fullbody">
-          <video poster="" id="fullbody" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/fullbody.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-blueshirt">
-          <video poster="" id="blueshirt" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/blueshirt.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-mask">
-          <video poster="" id="mask" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/mask.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-coffee">
-          <video poster="" id="coffee" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/coffee.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-toby">
-          <video poster="" id="toby" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/toby2.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
+<!-- ============================================================
+     ABSTRACT
+     ============================================================ -->
 <section class="section">
   <div class="container is-max-desktop">
-    <!-- Abstract. -->
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            We present the first method capable of photorealistically reconstructing a non-rigidly
-            deforming scene using photos/videos captured casually from mobile phones.
-          </p>
-          <p>
-            Our approach augments neural radiance fields
-            (NeRF) by optimizing an
-            additional continuous volumetric deformation field that warps each observed point into a
-            canonical 5D NeRF.
-            We observe that these NeRF-like deformation fields are prone to local minima, and
-            propose a coarse-to-fine optimization method for coordinate-based models that allows for
-            more robust optimization.
-            By adapting principles from geometry processing and physical simulation to NeRF-like
-            models, we propose an elastic regularization of the deformation field that further
-            improves robustness.
-          </p>
-          <p>
-            We show that <span class="dnerf">Nerfies</span> can turn casually captured selfie
-            photos/videos into deformable NeRF
-            models that allow for photorealistic renderings of the subject from arbitrary
-            viewpoints, which we dub <i>"nerfies"</i>. We evaluate our method by collecting data
-            using a
-            rig with two mobile phones that take time-synchronized photos, yielding train/validation
-            images of the same pose at different viewpoints. We show that our method faithfully
-            reconstructs non-rigidly deforming scenes and reproduces unseen views with high
-            fidelity.
+            We present <strong>DiT Readout (ReaDiT) Guidance</strong>, a lightweight framework for
+            controlling generation with Diffusion Transformer (DiT) models via their internal feature
+            representations. ReaDiT Guidance uses features from a <em>single</em> DiT block to steer
+            the generative process according to spatial targets — depth, pose, or edge maps — provided
+            at test time. Since modern text-to-video models are largely built on DiT backbones, ReaDiT
+            Guidance naturally extends to video generation, enabling camera and motion control.
+            Our approach achieves competitive or improved results compared to existing feature-based
+            and adapter-based approaches while requiring significantly fewer parameters.
           </p>
         </div>
       </div>
     </div>
-    <!--/ Abstract. -->
+  </div>
+</section>
 
-    <!-- Paper video. -->
+
+<!-- ============================================================
+     APPROACH
+     ============================================================ -->
+<section class="section" style="padding-top:0;">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-3 has-text-centered">Approach</h2>
+
+        <!-- Method overview figure — figures/Method_figure_draft2.pdf -->
+        <figure class="image" style="margin-bottom:1.5rem;">
+          <img src="./static/images/Method_figure_draft2.png"
+               alt="Method overview — figures/Method_figure_draft2.pdf">
+          <figcaption class="has-text-centered" style="font-size:0.9rem; margin-top:0.4rem; color:#555;">
+            <strong>Method Overview.</strong>
+            <em>Left:</em> ReaDiT takes a single intermediate DiT feature and guides generation by optimizing the latent <em>z<sub>t</sub></em>.
+            <em>Right:</em> Training — noise an image to timestep <em>t</em> and supervise with an off-the-shelf target.
+          </figcaption>
+        </figure>
+
+        <!-- Architecture figure — figures/Readout_arch3.pdf -->
+        <figure class="image" style="margin-bottom:1.5rem;">
+          <img src="./static/images/Readout_arch3.png"
+               alt="ReaDiT architecture — figures/Readout_arch3.pdf"
+               style="max-width:85%; margin:auto; display:block;">
+          <figcaption class="has-text-centered" style="font-size:0.9rem; margin-top:0.4rem; color:#555;">
+            <strong>ReaDiT Architecture.</strong>
+            Input DiT features are encoded into multi-resolution maps and progressively fused to produce spatial outputs.
+          </figcaption>
+        </figure>
+
+        <!-- Optical flow figure — figures/optical_flow_2.pdf -->
+        <figure class="image">
+          <img src="./static/images/optical_flow_2.png"
+               alt="Optical flow prediction — figures/optical_flow_2.pdf"
+               style="max-width:80%; margin:auto; display:block;">
+          <figcaption class="has-text-centered" style="font-size:0.9rem; margin-top:0.4rem; color:#555;">
+            <strong>Optical Flow Prediction.</strong>
+            Point descriptors from two frames are compared via cosine similarity to predict target correspondences.
+          </figcaption>
+        </figure>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SPATIAL PREDICTION RESULTS
+     figures/Qualitative_prediction.pdf  +  supplementals
+     ============================================================ -->
+<section class="section" style="padding-bottom:0.5rem;">
+  <div class="container is-max-desktop">
     <div class="columns is-centered has-text-centered">
       <div class="column is-four-fifths">
-        <h2 class="title is-3">Video</h2>
-        <div class="publication-video">
-          <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"
-                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
+        <h2 class="title is-3">Spatial Prediction</h2>
+        <p>
+          ReaDiT produces meaningful depth, pose, and edge predictions directly from frozen DiT features.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <!-- figures/Qualitative_prediction.pdf -->
+      <div id="prediction-carousel" class="carousel results-carousel">
+        <div class="item">
+          <img src="./static/images/Qualitative_prediction.png"
+               alt="Spatial prediction results — figures/Qualitative_prediction.pdf">
+        </div>
+        <div class="item">
+          <img src="./static/images/suppl_Qualitative_prediction.png"
+               alt="Supplemental prediction results — figures/suppl_Qualitative_prediction.pdf">
+        </div>
+        <div class="item">
+          <img src="./static/images/suppl_Qualitative_prediction2.png"
+               alt="Supplemental prediction results 2 — figures/suppl_Qualitative_prediction2.pdf">
         </div>
       </div>
     </div>
-    <!--/ Paper video. -->
   </div>
 </section>
 
 
-<section class="section">
+<!-- ============================================================
+     SPATIAL IMAGE GUIDANCE
+     figures/Qualitative_result_3_3cols.pdf  +  supplementals
+     ============================================================ -->
+<section class="section" style="padding-bottom:0.5rem;">
   <div class="container is-max-desktop">
-
-    <div class="columns is-centered">
-
-      <!-- Visual Effects. -->
-      <div class="column">
-        <div class="content">
-          <h2 class="title is-3">Visual Effects</h2>
-          <p>
-            Using <i>nerfies</i> you can create fun visual effects. This Dolly zoom effect
-            would be impossible without nerfies since it would require going through a wall.
-          </p>
-          <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/dollyzoom-stacked.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Spatial Image Guidance</h2>
+        <p>
+          Depth, pose, and edge guided image generation on SD3 and FLUX.
+        </p>
       </div>
-      <!--/ Visual Effects. -->
+    </div>
+  </div>
+</section>
 
-      <!-- Matting. -->
-      <div class="column">
-        <h2 class="title is-3">Matting</h2>
-        <div class="columns is-centered">
-          <div class="column content">
-            <p>
-              As a byproduct of our method, we can also solve the matting problem by ignoring
-              samples that fall outside of a bounding box during rendering.
-            </p>
-            <video id="matting-video" controls playsinline height="100%">
-              <source src="./static/videos/matting.mp4"
-                      type="video/mp4">
-            </video>
-          </div>
-
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <!-- figures/Qualitative_result_3_3cols.pdf -->
+      <div id="image-guidance-carousel" class="carousel results-carousel">
+        <div class="item">
+          <img src="./static/images/Qualitative_result_3_3cols.png"
+               alt="Spatial image guidance — figures/Qualitative_result_3_3cols.pdf">
+        </div>
+        <div class="item">
+          <img src="./static/images/suppl_Qualitative_result.png"
+               alt="Supplemental image guidance — figures/suppl_Qualitative_result.pdf">
+        </div>
+        <div class="item">
+          <img src="./static/images/suppl_Qualitative_result2.png"
+               alt="Supplemental image guidance 2 — figures/suppl_Qualitative_result2.pdf">
         </div>
       </div>
     </div>
-    <!--/ Matting. -->
-
-    <!-- Animation. -->
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Animation</h2>
-
-        <!-- Interpolating. -->
-        <h3 class="title is-4">Interpolating states</h3>
-        <div class="content has-text-justified">
-          <p>
-            We can also animate the scene by interpolating the deformation latent codes of two input
-            frames. Use the slider here to linearly interpolate between the left frame and the right
-            frame.
-          </p>
-        </div>
-        <div class="columns is-vcentered interpolation-panel">
-          <div class="column is-3 has-text-centered">
-            <img src="./static/images/interpolate_start.jpg"
-                 class="interpolation-image"
-                 alt="Interpolate start reference image."/>
-            <p>Start Frame</p>
-          </div>
-          <div class="column interpolation-video-column">
-            <div id="interpolation-image-wrapper">
-              Loading...
-            </div>
-            <input class="slider is-fullwidth is-large is-info"
-                   id="interpolation-slider"
-                   step="1" min="0" max="100" value="0" type="range">
-          </div>
-          <div class="column is-3 has-text-centered">
-            <img src="./static/images/interpolate_end.jpg"
-                 class="interpolation-image"
-                 alt="Interpolation end reference image."/>
-            <p class="is-bold">End Frame</p>
-          </div>
-        </div>
-        <br/>
-        <!--/ Interpolating. -->
-
-        <!-- Re-rendering. -->
-        <h3 class="title is-4">Re-rendering the input video</h3>
-        <div class="content has-text-justified">
-          <p>
-            Using <span class="dnerf">Nerfies</span>, you can re-render a video from a novel
-            viewpoint such as a stabilized camera by playing back the training deformations.
-          </p>
-        </div>
-        <div class="content has-text-centered">
-          <video id="replay-video"
-                 controls
-                 muted
-                 preload
-                 playsinline
-                 width="75%">
-            <source src="./static/videos/replay.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <!--/ Re-rendering. -->
-
-      </div>
-    </div>
-    <!--/ Animation. -->
-
-
-    <!-- Concurrent Work. -->
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Related Links</h2>
-
-        <div class="content has-text-justified">
-          <p>
-            There's a lot of excellent work that was introduced around the same time as ours.
-          </p>
-          <p>
-            <a href="https://arxiv.org/abs/2104.09125">Progressive Encoding for Neural Optimization</a> introduces an idea similar to our windowed position encoding for coarse-to-fine optimization.
-          </p>
-          <p>
-            <a href="https://www.albertpumarola.com/research/D-NeRF/index.html">D-NeRF</a> and <a href="https://gvv.mpi-inf.mpg.de/projects/nonrigid_nerf/">NR-NeRF</a>
-            both use deformation fields to model non-rigid scenes.
-          </p>
-          <p>
-            Some works model videos with a NeRF by directly modulating the density, such as <a href="https://video-nerf.github.io/">Video-NeRF</a>, <a href="https://www.cs.cornell.edu/~zl548/NSFF/">NSFF</a>, and <a href="https://neural-3d-video.github.io/">DyNeRF</a>
-          </p>
-          <p>
-            There are probably many more by the time you are reading this. Check out <a href="https://dellaert.github.io/NeRF/">Frank Dellart's survey on recent NeRF papers</a>, and <a href="https://github.com/yenchenlin/awesome-NeRF">Yen-Chen Lin's curated list of NeRF papers</a>.
-          </p>
-        </div>
-      </div>
-    </div>
-    <!--/ Concurrent Work. -->
-
   </div>
 </section>
 
 
+<!-- ============================================================
+     COMPARISON WITH PRIOR WORK
+     figures/Qualitative_comp.pdf  +  supplementals
+     ============================================================ -->
+<section class="section" style="padding-bottom:0.5rem;">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Comparison with Prior Work</h2>
+        <p>
+          ReaDiT vs. Readout Guidance (RG), ControlNet, and OminiControl across depth, pose, and edge tasks.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <!-- figures/Qualitative_comp.pdf -->
+      <div id="comparison-carousel" class="carousel results-carousel">
+        <div class="item">
+          <img src="./static/images/Qualitative_comp.png"
+               alt="Qualitative comparison — figures/Qualitative_comp.pdf">
+        </div>
+        <div class="item">
+          <img src="./static/images/suppl_Qualitative_comp.png"
+               alt="Supplemental comparison — figures/suppl_Qualitative_comp.pdf">
+        </div>
+        <div class="item">
+          <img src="./static/images/suppl_Qualitative_comp2.png"
+               alt="Supplemental comparison 2 — figures/suppl_Qualitative_comp2.pdf">
+        </div>
+        <div class="item">
+          <img src="./static/images/suppl_Qualitative_comp4.png"
+               alt="Supplemental comparison 4 — figures/suppl_Qualitative_comp4.pdf">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     DUAL GUIDANCE
+     figures/main_dual_consistent.pdf  +  figures/dual_inconsistent.pdf
+     ============================================================ -->
+<section class="section" style="padding-bottom:0.5rem;">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Dual Guidance</h2>
+        <p>
+          Jointly applying depth and pose guidance from the same (consistent) or different (inconsistent) source images.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <!-- figures/main_dual_consistent.pdf  +  figures/dual_inconsistent.pdf -->
+      <div id="dual-carousel" class="carousel results-carousel">
+        <div class="item">
+          <img src="./static/images/main_dual_consistent.png"
+               alt="Consistent dual guidance — figures/main_dual_consistent.pdf">
+          <p class="has-text-centered" style="font-size:0.85rem; padding:0.4rem 0; color:#555;">
+            <strong>Consistent Dual Guidance</strong> — depth &amp; pose from the same source image.
+          </p>
+        </div>
+        <div class="item">
+          <img src="./static/images/dual_inconsistent.png"
+               alt="Inconsistent dual guidance — figures/dual_inconsistent.pdf">
+          <p class="has-text-centered" style="font-size:0.85rem; padding:0.4rem 0; color:#555;">
+            <strong>Inconsistent Dual Guidance</strong> — depth &amp; pose from different source images.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     SPATIAL VIDEO GUIDANCE
+     Video placeholder — figures/spatial_video_deer_mural_rearrange.pdf
+     ============================================================ -->
+<section class="section" style="padding-bottom:0.5rem;">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Spatial Video Guidance</h2>
+        <p>
+          Depth, pose, and edge guided video generation on CogVideoX.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div id="spatial-video-carousel" class="carousel results-carousel">
+        <div class="item">
+          <div class="video-placeholder">
+            <div class="placeholder-icon">&#9654;</div>
+            <p class="placeholder-title">Spatial Video Guidance — Example 1</p>
+            <p class="placeholder-label">figures/spatial_video_deer_mural_rearrange.pdf (video coming soon)</p>
+          </div>
+        </div>
+        <div class="item">
+          <div class="video-placeholder">
+            <div class="placeholder-icon">&#9654;</div>
+            <p class="placeholder-title">Spatial Video Guidance — Example 2</p>
+            <p class="placeholder-label">figures/sp_video.pdf (video coming soon)</p>
+          </div>
+        </div>
+        <div class="item">
+          <div class="video-placeholder">
+            <div class="placeholder-icon">&#9654;</div>
+            <p class="placeholder-title">Spatial Video Guidance — Example 3</p>
+            <p class="placeholder-label">figures/suppl_Qualitative_video_result2.pdf (video coming soon)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     MOTION VIDEO GUIDANCE
+     Video placeholder — figures/updated_castle_rearranged.pdf
+     ============================================================ -->
+<section class="section" style="padding-bottom:0.5rem;">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Motion Video Guidance</h2>
+        <p>
+          Optical-flow guided video generation for camera and object motion control.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero is-light is-small">
+  <div class="hero-body">
+    <div class="container">
+      <div id="motion-video-carousel" class="carousel results-carousel">
+        <div class="item">
+          <div class="video-placeholder">
+            <div class="placeholder-icon">&#9654;</div>
+            <p class="placeholder-title">Motion Video Guidance — Camera Pan</p>
+            <p class="placeholder-label">figures/updated_castle_rearranged.pdf (video coming soon)</p>
+          </div>
+        </div>
+        <div class="item">
+          <div class="video-placeholder">
+            <div class="placeholder-icon">&#9654;</div>
+            <p class="placeholder-title">Motion Video Guidance — Object Motion</p>
+            <p class="placeholder-label">figures/sp_deer_dancer_rearrange.pdf (video coming soon)</p>
+          </div>
+        </div>
+        <div class="item">
+          <div class="video-placeholder">
+            <div class="placeholder-icon">&#9654;</div>
+            <p class="placeholder-title">Motion Video Guidance — Comparison</p>
+            <p class="placeholder-label">figures/compare_video_rearrange.pdf (video coming soon)</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     BIBTEX
+     ============================================================ -->
 <section class="section" id="BibTeX">
   <div class="container is-max-desktop content">
     <h2 class="title">BibTeX</h2>
-    <pre><code>@article{park2021nerfies,
-  author    = {Park, Keunhong and Sinha, Utkarsh and Barron, Jonathan T. and Bouaziz, Sofien and Goldman, Dan B and Seitz, Steven M. and Martin-Brualla, Ricardo},
-  title     = {Nerfies: Deformable Neural Radiance Fields},
-  journal   = {ICCV},
-  year      = {2021},
+    <pre><code>@article{readit2026,
+  title   = {ReaDiT Guidance: Control for Image and Video Generation using Diffusion Transformer Features},
+  author  = {Anonymous},
+  year    = {2026}
 }</code></pre>
   </div>
 </section>
 
 
+<!-- ============================================================
+     FOOTER
+     ============================================================ -->
 <footer class="footer">
   <div class="container">
-    <div class="content has-text-centered">
-      <a class="icon-link"
-         href="./static/videos/nerfies_paper.pdf">
-        <i class="fas fa-file-pdf"></i>
-      </a>
-      <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
-        <i class="fab fa-github"></i>
-      </a>
-    </div>
     <div class="columns is-centered">
       <div class="column is-8">
-        <div class="content">
+        <div class="content has-text-centered">
           <p>
-            This website is licensed under a <a rel="license"
-                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
-            Commons Attribution-ShareAlike 4.0 International License</a>.
-          </p>
-          <p>
-            This means you are free to borrow the <a
-              href="https://github.com/nerfies/nerfies.github.io">source code</a> of this website,
-            we just ask that you link back to this page in the footer.
-            Please remember to remove the analytics code included in the header of the website which
-            you do not want on your website.
+            Website template adapted from
+            <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>
+            and
+            <a href="https://unziplora.github.io">UnZipLoRA</a>.
+            Licensed under
+            <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.
           </p>
         </div>
       </div>
     </div>
   </div>
 </footer>
+
 
 </body>
 </html>
