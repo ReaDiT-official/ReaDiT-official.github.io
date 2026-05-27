@@ -143,7 +143,7 @@
           </figcaption>
         </figure>
 
-        <!-- Optical flow figure — figures/optical_flow_2.pdf -->
+        <!-- Optical flow figure — figures/optical_flow_2.pdf (commented out for now)
         <figure class="image">
           <img src="./static/images/optical_flow_2.png"
                alt="Optical flow prediction — figures/optical_flow_2.pdf"
@@ -153,6 +153,7 @@
             Point descriptors from two frames are compared via cosine similarity to predict target correspondences.
           </figcaption>
         </figure>
+        -->
 
       </div>
     </div>
@@ -161,8 +162,12 @@
 
 
 <!-- ============================================================
-     SPATIAL PREDICTION RESULTS
-     figures/Qualitative_prediction.pdf  +  supplementals
+     SPATIAL PREDICTION — 3-row × 3-col grid per slide
+     Rows:    Input | Detected (off-the-shelf GT) | Ours (ReaDiT)
+     Columns: Depth | Pose | Edge
+     Upload subfigures to static/images/prediction/
+     Naming:  {slide}_{depth|pose|edge}_{input|detected|ours}.png
+     Source:  figures/Qualitative_prediction.pdf
      ============================================================ -->
 <section class="section" style="padding-bottom:0.5rem;">
   <div class="container is-max-desktop">
@@ -170,30 +175,86 @@
       <div class="column is-four-fifths">
         <h2 class="title is-3">Spatial Prediction</h2>
         <p>
-          ReaDiT produces meaningful depth, pose, and edge predictions directly from frozen DiT features.
+          ReaDiT predicts dense spatial maps from frozen DiT features at any denoising timestep.
         </p>
       </div>
     </div>
   </div>
 </section>
 
-<section class="hero is-light is-small">
+<section class="hero is-light">
   <div class="hero-body">
     <div class="container">
-      <!-- figures/Qualitative_prediction.pdf -->
       <div id="prediction-carousel" class="carousel results-carousel">
+
+        <!-- ── Slide 1 ── figures/Qualitative_prediction.pdf -->
+        <div class="item">
+          <div class="guidance-slide">
+            <div class="guidance-grid guidance-grid-3row">
+              <!-- Column labels -->
+              <div class="guidance-row-label"></div>
+              <div class="guidance-col-label col-depth">Depth</div>
+              <div class="guidance-col-label col-pose">Pose</div>
+              <div class="guidance-col-label col-edge">Edge</div>
+              <!-- Row: Input -->
+              <div class="guidance-row-label row-input">Input</div>
+              <img class="guidance-cell" src="./static/images/prediction/ex1_depth_input.png"
+                   alt="Input — figures/Qualitative_prediction.pdf">
+              <img class="guidance-cell" src="./static/images/prediction/ex1_pose_input.png"
+                   alt="Input — figures/Qualitative_prediction.pdf">
+              <img class="guidance-cell" src="./static/images/prediction/ex1_edge_input.png"
+                   alt="Input — figures/Qualitative_prediction.pdf">
+              <!-- Row: Detected (off-the-shelf ground truth) -->
+              <div class="guidance-row-label row-detected">Detected</div>
+              <img class="guidance-cell" src="./static/images/prediction/ex1_depth_detected.png"
+                   alt="Detected depth — figures/Qualitative_prediction.pdf">
+              <img class="guidance-cell" src="./static/images/prediction/ex1_pose_detected.png"
+                   alt="Detected pose — figures/Qualitative_prediction.pdf">
+              <img class="guidance-cell" src="./static/images/prediction/ex1_edge_detected.png"
+                   alt="Detected edge — figures/Qualitative_prediction.pdf">
+              <!-- Row: Ours -->
+              <div class="guidance-row-label row-ours">Ours</div>
+              <img class="guidance-cell" src="./static/images/prediction/ex1_depth_ours.png"
+                   alt="ReaDiT depth — figures/Qualitative_prediction.pdf">
+              <img class="guidance-cell" src="./static/images/prediction/ex1_pose_ours.png"
+                   alt="ReaDiT pose — figures/Qualitative_prediction.pdf">
+              <img class="guidance-cell" src="./static/images/prediction/ex1_edge_ours.png"
+                   alt="ReaDiT edge — figures/Qualitative_prediction.pdf">
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Slide 2 ── figures/suppl_Qualitative_prediction.pdf -->
+        <div class="item">
+          <div class="guidance-slide">
+            <div class="guidance-grid guidance-grid-3row">
+              <div class="guidance-row-label"></div>
+              <div class="guidance-col-label col-depth">Depth</div>
+              <div class="guidance-col-label col-pose">Pose</div>
+              <div class="guidance-col-label col-edge">Edge</div>
+              <div class="guidance-row-label row-input">Input</div>
+              <div class="guidance-cell guidance-placeholder">depth input</div>
+              <div class="guidance-cell guidance-placeholder">pose input</div>
+              <div class="guidance-cell guidance-placeholder">edge input</div>
+              <div class="guidance-row-label row-detected">Detected</div>
+              <div class="guidance-cell guidance-placeholder">depth detected</div>
+              <div class="guidance-cell guidance-placeholder">pose detected</div>
+              <div class="guidance-cell guidance-placeholder">edge detected</div>
+              <div class="guidance-row-label row-ours">Ours</div>
+              <div class="guidance-cell guidance-placeholder">depth ours</div>
+              <div class="guidance-cell guidance-placeholder">pose ours</div>
+              <div class="guidance-cell guidance-placeholder">edge ours</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Fallback: original full figure -->
         <div class="item">
           <img src="./static/images/Qualitative_prediction.png"
-               alt="Spatial prediction results — figures/Qualitative_prediction.pdf">
+               alt="Spatial prediction — figures/Qualitative_prediction.pdf"
+               style="width:100%;">
         </div>
-        <div class="item">
-          <img src="./static/images/suppl_Qualitative_prediction.png"
-               alt="Supplemental prediction results — figures/suppl_Qualitative_prediction.pdf">
-        </div>
-        <div class="item">
-          <img src="./static/images/suppl_Qualitative_prediction2.png"
-               alt="Supplemental prediction results 2 — figures/suppl_Qualitative_prediction2.pdf">
-        </div>
+
       </div>
     </div>
   </div>
@@ -201,8 +262,11 @@
 
 
 <!-- ============================================================
-     SPATIAL IMAGE GUIDANCE
-     figures/Qualitative_result_3_3cols.pdf  +  supplementals
+     SPATIAL IMAGE GUIDANCE  —  per slide: prompt + ref row + gen row
+     Row 1 (Reference): depth/pose/edge guidance maps
+     Row 2 (Generated): guided output images
+     Upload subfigures to static/images/guidance/ once ready.
+     Naming: {subject}_{depth|pose|edge}_{ref|gen}.png
      ============================================================ -->
 <section class="section" style="padding-bottom:0.5rem;">
   <div class="container is-max-desktop">
@@ -210,31 +274,79 @@
       <div class="column is-four-fifths">
         <h2 class="title is-3">Spatial Image Guidance</h2>
         <p>
-          Depth, pose, and edge guided image generation on SD3 and FLUX.
+          Given a spatial guidance map, ReaDiT steers generation to match the target layout
+          while maintaining image quality and prompt adherence.
         </p>
       </div>
     </div>
   </div>
 </section>
 
-<section class="hero is-light is-small">
+<section class="hero is-light">
   <div class="hero-body">
     <div class="container">
-      <!-- figures/Qualitative_result_3_3cols.pdf -->
       <div id="image-guidance-carousel" class="carousel results-carousel">
+
+        <!-- ── Slide 1: Lantern ── -->
+        <!-- Source subfigures: figures/Qualitative_result_3_3cols.pdf (lantern column) -->
+        <div class="item">
+          <div class="guidance-slide">
+            <p class="guidance-prompt">&ldquo;A standing <strong>lantern</strong> in a studio&rdquo;</p>
+            <div class="guidance-grid">
+              <!-- Column labels -->
+              <div class="guidance-row-label"></div>
+              <div class="guidance-col-label col-depth">Depth</div>
+              <div class="guidance-col-label col-pose">Pose</div>
+              <div class="guidance-col-label col-edge">Edge</div>
+              <!-- Row 1: Reference (guidance inputs) -->
+              <div class="guidance-row-label row-ref">Reference</div>
+              <img class="guidance-cell" src="./static/images/guidance/lantern_depth_ref.png"
+                   alt="Depth map — figures/Qualitative_result_3_3cols.pdf">
+              <img class="guidance-cell" src="./static/images/guidance/lantern_pose_ref.png"
+                   alt="Pose map — figures/Qualitative_result_3_3cols.pdf">
+              <img class="guidance-cell" src="./static/images/guidance/lantern_edge_ref.png"
+                   alt="Edge map — figures/Qualitative_result_3_3cols.pdf">
+              <!-- Row 2: Generated (guided outputs) -->
+              <div class="guidance-row-label row-gen">Generated</div>
+              <img class="guidance-cell" src="./static/images/guidance/lantern_depth_gen.png"
+                   alt="Depth-guided result — figures/Qualitative_result_3_3cols.pdf">
+              <img class="guidance-cell" src="./static/images/guidance/lantern_pose_gen.png"
+                   alt="Pose-guided result — figures/Qualitative_result_3_3cols.pdf">
+              <img class="guidance-cell" src="./static/images/guidance/lantern_edge_gen.png"
+                   alt="Edge-guided result — figures/Qualitative_result_3_3cols.pdf">
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Slide 2: placeholder subject ── -->
+        <div class="item">
+          <div class="guidance-slide">
+            <p class="guidance-prompt">&ldquo;A standing <strong>[subject]</strong> in a studio&rdquo;</p>
+            <div class="guidance-grid">
+              <div class="guidance-row-label"></div>
+              <div class="guidance-col-label col-depth">Depth</div>
+              <div class="guidance-col-label col-pose">Pose</div>
+              <div class="guidance-col-label col-edge">Edge</div>
+              <div class="guidance-row-label row-ref">Reference</div>
+              <div class="guidance-cell guidance-placeholder">depth ref</div>
+              <div class="guidance-cell guidance-placeholder">pose ref</div>
+              <div class="guidance-cell guidance-placeholder">edge ref</div>
+              <div class="guidance-row-label row-gen">Generated</div>
+              <div class="guidance-cell guidance-placeholder">depth gen</div>
+              <div class="guidance-cell guidance-placeholder">pose gen</div>
+              <div class="guidance-cell guidance-placeholder">edge gen</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Fallback: original full figure ── -->
         <div class="item">
           <img src="./static/images/Qualitative_result_3_3cols.png"
-               alt="Spatial image guidance — figures/Qualitative_result_3_3cols.pdf">
+               alt="Spatial image guidance — figures/Qualitative_result_3_3cols.pdf"
+               style="width:100%;">
         </div>
-        <div class="item">
-          <img src="./static/images/suppl_Qualitative_result.png"
-               alt="Supplemental image guidance — figures/suppl_Qualitative_result.pdf">
-        </div>
-        <div class="item">
-          <img src="./static/images/suppl_Qualitative_result2.png"
-               alt="Supplemental image guidance 2 — figures/suppl_Qualitative_result2.pdf">
-        </div>
-      </div>
+
+      </div><!-- /carousel -->
     </div>
   </div>
 </section>
@@ -286,7 +398,8 @@
 
 <!-- ============================================================
      DUAL GUIDANCE
-     figures/main_dual_consistent.pdf  +  figures/dual_inconsistent.pdf
+     Consistent: figures/main_dual_consistent.pdf
+     Inconsistent (interactive 2×2 matrix): figures/dual_inconsistent.pdf
      ============================================================ -->
 <section class="section" style="padding-bottom:0.5rem;">
   <div class="container is-max-desktop">
@@ -294,34 +407,95 @@
       <div class="column is-four-fifths">
         <h2 class="title is-3">Dual Guidance</h2>
         <p>
-          Jointly applying depth and pose guidance from the same (consistent) or different (inconsistent) source images.
+          ReaDiT can jointly apply depth and pose guidance. Even when control maps come from
+          <em>different</em> source images, it automatically decouples the two signals
+          to produce coherent results.
         </p>
       </div>
     </div>
   </div>
 </section>
 
-<section class="hero is-light is-small">
+<!-- Consistent dual guidance — commented out for now.
+     Source: figures/main_dual_consistent.pdf
+     Layout suggestion when ready:
+       Use the same guidance-grid pattern with 3 columns (Depth only | Pose only | Depth+Pose)
+       and 2 rows (Guidance target | Generated), so viewers can directly see
+       how combining both signals improves over single-task guidance.
+<section class="hero is-light is-small" style="margin-bottom:1rem;">
   <div class="hero-body">
     <div class="container">
-      <!-- figures/main_dual_consistent.pdf  +  figures/dual_inconsistent.pdf -->
-      <div id="dual-carousel" class="carousel results-carousel">
-        <div class="item">
-          <img src="./static/images/main_dual_consistent.png"
-               alt="Consistent dual guidance — figures/main_dual_consistent.pdf">
-          <p class="has-text-centered" style="font-size:0.85rem; padding:0.4rem 0; color:#555;">
-            <strong>Consistent Dual Guidance</strong> — depth &amp; pose from the same source image.
-          </p>
-        </div>
-        <div class="item">
-          <img src="./static/images/dual_inconsistent.png"
-               alt="Inconsistent dual guidance — figures/dual_inconsistent.pdf">
-          <p class="has-text-centered" style="font-size:0.85rem; padding:0.4rem 0; color:#555;">
-            <strong>Inconsistent Dual Guidance</strong> — depth &amp; pose from different source images.
-          </p>
+      <p class="has-text-centered" style="font-weight:600; margin-bottom:0.5rem;">
+        Consistent — depth &amp; pose from the same source
+      </p>
+      <img src="./static/images/main_dual_consistent.png"
+           alt="Consistent dual guidance — figures/main_dual_consistent.pdf"
+           style="max-width:85%; display:block; margin:auto; border-radius:8px;">
+    </div>
+  </div>
+</section>
+-->
+
+<!-- Inconsistent dual guidance — unziplora-style 1×1 selector
+     Upload subfigures to static/images/dual/ once ready.
+     Reference: figures/dual_inconsistent.pdf
+     depth_A/B.png, pose_A/B.png, result_{depth}_{pose}.png -->
+<section class="section" style="padding-top:0.5rem; padding-bottom:1.5rem;">
+  <div class="container is-max-desktop">
+    <p class="has-text-centered" style="font-weight:600; margin-bottom:1.2rem;">
+      Inconsistent — depth &amp; pose from <em>different</em> source images
+    </p>
+
+    <div class="dual-selector">
+      <!-- Left: pick depth -->
+      <div class="dual-picker">
+        <h4 class="dual-picker-title">Depth</h4>
+        <div class="dual-thumb-group">
+          <div class="dual-thumb-wrap is-selected" data-kind="depth" data-key="A"
+               onclick="dualPick(this)">
+            <img src="./static/images/dual/depth_A.png"
+                 alt="Depth A — figures/dual_inconsistent.pdf">
+            <span>Depth A</span>
+          </div>
+          <div class="dual-thumb-wrap" data-kind="depth" data-key="B"
+               onclick="dualPick(this)">
+            <img src="./static/images/dual/depth_B.png"
+                 alt="Depth B — figures/dual_inconsistent.pdf">
+            <span>Depth B</span>
+          </div>
         </div>
       </div>
-    </div>
+
+      <!-- Centre: result -->
+      <div class="dual-result-box">
+        <img id="dual-result-img"
+             src="./static/images/dual/result_A_A.png"
+             alt="Dual guidance result — figures/dual_inconsistent.pdf">
+        <p id="dual-result-caption" class="dual-result-caption">
+          Depth A &nbsp;+&nbsp; Pose A
+        </p>
+      </div>
+
+      <!-- Right: pick pose -->
+      <div class="dual-picker">
+        <h4 class="dual-picker-title">Pose</h4>
+        <div class="dual-thumb-group">
+          <div class="dual-thumb-wrap is-selected" data-kind="pose" data-key="A"
+               onclick="dualPick(this)">
+            <img src="./static/images/dual/pose_A.png"
+                 alt="Pose A — figures/dual_inconsistent.pdf">
+            <span>Pose A</span>
+          </div>
+          <div class="dual-thumb-wrap" data-kind="pose" data-key="B"
+               onclick="dualPick(this)">
+            <img src="./static/images/dual/pose_B.png"
+                 alt="Pose B — figures/dual_inconsistent.pdf">
+            <span>Pose B</span>
+          </div>
+        </div>
+      </div>
+    </div><!-- /dual-selector -->
+
   </div>
 </section>
 
@@ -447,8 +621,8 @@
         <div class="content has-text-centered">
           <p>
             Website template adapted from
-            <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>
-            and
+            <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
+            Interactive layout inspired by
             <a href="https://unziplora.github.io">UnZipLoRA</a>.
             Licensed under
             <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.
@@ -459,6 +633,30 @@
   </div>
 </footer>
 
+
+<script>
+// Dual guidance selector — unziplora-style 1×1
+var _dualDepth = 'A', _dualPose = 'A';
+
+function dualPick(el) {
+  var kind = el.dataset.kind;   // 'depth' or 'pose'
+  var key  = el.dataset.key;    // 'A' or 'B'
+
+  // Update selection state for this group
+  document.querySelectorAll('.dual-thumb-wrap[data-kind="' + kind + '"]')
+    .forEach(function(w) { w.classList.remove('is-selected'); });
+  el.classList.add('is-selected');
+
+  if (kind === 'depth') _dualDepth = key;
+  else                  _dualPose  = key;
+
+  // Swap result image + caption
+  var src = './static/images/dual/result_' + _dualDepth + '_' + _dualPose + '.png';
+  document.getElementById('dual-result-img').src = src;
+  document.getElementById('dual-result-caption').textContent =
+    'Depth ' + _dualDepth + '  +  Pose ' + _dualPose;
+}
+</script>
 
 </body>
 </html>

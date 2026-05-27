@@ -163,3 +163,193 @@ body {
   margin: 0;
   padding: 0;
 }
+
+
+/* ================================================================
+   IMAGE GUIDANCE — prompt + ref row + gen row  (2 rows x 3 cols)
+   CSS grid: [row-label col] [depth col] [pose col] [edge col]
+
+   Colors from paper table (LaTeX colorbox[rgb]):
+     Depth  0.97 0.85 0.93  =>  #f7d9ed  (soft pink)
+     Pose   0.87 0.79 0.93  =>  #dec9ed  (soft lavender)
+     Edge   0.74 0.87 0.87  =>  #bddede  (soft teal)
+   ================================================================ */
+.guidance-slide {
+  padding: 1.2rem 1.8rem 1.2rem;
+}
+
+.guidance-prompt {
+  text-align: center;
+  font-size: 1.25rem;
+  font-style: italic;
+  font-weight: 600;
+  margin-bottom: 1.1rem;
+  color: #222;
+  font-family: 'Google Sans', sans-serif;
+}
+
+/* 4-column grid: row-label | depth | pose | edge */
+.guidance-grid {
+  display: grid;
+  grid-template-columns: 5.5rem 1fr 1fr 1fr;
+  gap: 0.6rem;
+  align-items: center;
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+/* 3-row variant (prediction: Input | Detected | Ours) */
+.guidance-grid-3row {
+  grid-template-columns: 5.5rem 1fr 1fr 1fr;
+}
+
+/* -- Column labels (task names) -- */
+.guidance-col-label {
+  font-size: 1rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  text-align: center;
+  padding: 0.3rem 0.6rem;
+  border-radius: 6px;
+  font-family: 'Google Sans', sans-serif;
+}
+
+/* Paper-matching task colors */
+.col-depth { background: #f7d9ed; color: #7a2050; }
+.col-pose  { background: #dec9ed; color: #4a2070; }
+.col-edge  { background: #bddede; color: #1a5555; }
+
+/* -- Row labels -- */
+.guidance-row-label {
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-align: right;
+  padding-right: 0.55rem;
+  white-space: nowrap;
+  font-family: 'Google Sans', sans-serif;
+}
+
+/* Row label colors */
+.row-input    { color: #4b5563; }
+.row-ref      { color: #4b5563; }
+.row-detected { color: #0369a1; }
+.row-gen      { color: #047857; }
+.row-ours     { color: #047857; font-style: italic; }
+
+/* -- Image cells -- square, uniform -- */
+.guidance-cell {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  display: block;
+}
+
+/* Dashed placeholder */
+.guidance-placeholder {
+  background: #ebebeb;
+  border: 2px dashed #bbb;
+  border-radius: 6px;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  color: #aaa;
+}
+
+
+/* ================================================================
+   INCONSISTENT DUAL GUIDANCE — unziplora-style 1×1 selector
+   Three columns: depth picker | result | pose picker
+   ================================================================ */
+.dual-selector {
+  display: flex;
+  gap: 1.5rem;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Left / right picker panels */
+.dual-picker {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.dual-picker-title {
+  font-size: 1rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #222;
+  margin-bottom: 0.35rem;
+  font-family: 'Google Sans', sans-serif;
+}
+
+.dual-thumb-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.dual-thumb-wrap {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.2rem;
+}
+
+.dual-thumb-wrap img {
+  width: 110px;
+  height: 110px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 3px solid #ddd;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.dual-thumb-wrap span {
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #444;
+}
+
+.dual-thumb-wrap:hover img {
+  border-color: #90bfff;
+}
+
+.dual-thumb-wrap.is-selected img {
+  border-color: #2276dd;
+  box-shadow: 0 0 0 3px #2276dd33;
+}
+
+/* Centre result panel */
+.dual-result-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.dual-result-box img {
+  width: 280px;
+  height: 280px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 2px solid #ccc;
+  transition: opacity 0.2s;
+}
+
+.dual-result-caption {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #333;
+  text-align: center;
+  font-family: 'Google Sans', sans-serif;
+}
