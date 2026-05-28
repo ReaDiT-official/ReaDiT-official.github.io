@@ -402,28 +402,20 @@ body {
 .pred-tab-btn.tab-edge.is-active  { border-color: #1a5555; }
 
 .pred-panel {
-  max-width: 680px;
+  max-width: 700px;
   margin: 0 auto;
-}
-
-.pred-example {
-  display: flex;
-  gap: 0.75rem;
-  justify-content: center;
-  margin-bottom: 1rem;
-}
-
-.pred-example-col {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  display: grid;
+  grid-template-columns: 2.8rem repeat(6, 1fr);
   gap: 0.3rem;
-  flex: 1;
+  align-items: center;
 }
 
-.pred-col-label {
-  font-size: 1rem;
+.pred-row-label {
+  font-size: 0.85rem;
   font-weight: 800;
+  text-align: right;
+  padding-right: 0.35rem;
+  white-space: nowrap;
   font-family: 'Google Sans', sans-serif;
 }
 
@@ -431,7 +423,7 @@ body {
   width: 100%;
   aspect-ratio: 1 / 1;
   object-fit: cover;
-  border-radius: 6px;
+  border-radius: 4px;
   border: 1px solid #ccc;
   display: block;
 }

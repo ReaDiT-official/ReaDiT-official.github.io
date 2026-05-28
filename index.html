@@ -589,28 +589,25 @@ var predData = {
 
 function predInit() {
   var root = './static/images/prediction/';
+  var rowDefs = [
+    { label: 'Input', cls: 'row-input',    dir: '_orig', suffix: '_orig.png' },
+    { label: 'GT',    cls: 'row-detected', dir: '_gt',   suffix: '_orig.png' },
+    { label: 'Ours',  cls: 'row-ours',     dir: '_rg',   suffix: '_pred.png' }
+  ];
   ['depth','pose','edge'].forEach(function(task) {
     var panel = document.getElementById('pred-panel-' + task);
-    // column-label header row
-    var hdr = document.createElement('div');
-    hdr.className = 'pred-example pred-header';
-    hdr.innerHTML =
-      '<div class="pred-example-col"><p class="pred-col-label row-input">Input</p></div>' +
-      '<div class="pred-example-col"><p class="pred-col-label row-detected">GT</p></div>' +
-      '<div class="pred-example-col"><p class="pred-col-label row-ours">Ours</p></div>';
-    panel.appendChild(hdr);
-    // image rows
-    predData[task].forEach(function(base) {
-      var orig = root + task + '_orig/' + base + '_orig.png';
-      var gt   = root + task + '_gt/'   + base + '_orig.png';
-      var ours = root + task + '_rg/'   + base + '_pred.png';
-      var row = document.createElement('div');
-      row.className = 'pred-example';
-      row.innerHTML =
-        '<div class="pred-example-col"><img class="pred-img" src="' + orig + '" alt="Input"></div>' +
-        '<div class="pred-example-col"><img class="pred-img" src="' + gt   + '" alt="GT"></div>' +
-        '<div class="pred-example-col"><img class="pred-img" src="' + ours + '" alt="Ours"></div>';
-      panel.appendChild(row);
+    rowDefs.forEach(function(row) {
+      var lbl = document.createElement('div');
+      lbl.className = 'pred-row-label ' + row.cls;
+      lbl.textContent = row.label;
+      panel.appendChild(lbl);
+      predData[task].forEach(function(base) {
+        var img = document.createElement('img');
+        img.className = 'pred-img';
+        img.src = root + task + row.dir + '/' + base + row.suffix;
+        img.alt = row.label;
+        panel.appendChild(img);
+      });
     });
   });
 }
