@@ -162,12 +162,10 @@
 
 
 <!-- ============================================================
-     SPATIAL PREDICTION — 3-row × 3-col grid per slide
-     Rows:    Input | Detected (off-the-shelf GT) | Ours (ReaDiT)
-     Columns: Depth | Pose | Edge
-     Upload subfigures to static/images/prediction/
-     Naming:  {slide}_{depth|pose|edge}_{input|detected|ours}.png
-     Source:  figures/Qualitative_prediction.pdf
+     SPATIAL PREDICTION — tabbed by task (Depth / Pose / Edge)
+     Rows per tab: Input | Detected | Ours
+     Images: static/images/prediction/{ex}_{depth|pose|edge}_{input|detected|ours}.png
+     Source: figures/Qualitative_prediction.pdf
      ============================================================ -->
 <section class="section" style="padding-bottom:0.5rem;">
   <div class="container is-max-desktop">
@@ -185,77 +183,110 @@
 <section class="hero is-light">
   <div class="hero-body">
     <div class="container">
-      <div id="prediction-carousel" class="carousel results-carousel">
 
-        <!-- ── Slide 1 ── figures/Qualitative_prediction.pdf -->
-        <div class="item">
-          <div class="guidance-slide">
-            <div class="guidance-grid guidance-grid-3row">
-              <!-- Column labels -->
-              <div class="guidance-row-label"></div>
-              <div class="guidance-col-label col-depth">Depth</div>
-              <div class="guidance-col-label col-pose">Pose</div>
-              <div class="guidance-col-label col-edge">Edge</div>
-              <!-- Row: Input -->
-              <div class="guidance-row-label row-input">Input</div>
-              <img class="guidance-cell" src="./static/images/prediction/ex1_depth_input.png"
-                   alt="Input — figures/Qualitative_prediction.pdf">
-              <img class="guidance-cell" src="./static/images/prediction/ex1_pose_input.png"
-                   alt="Input — figures/Qualitative_prediction.pdf">
-              <img class="guidance-cell" src="./static/images/prediction/ex1_edge_input.png"
-                   alt="Input — figures/Qualitative_prediction.pdf">
-              <!-- Row: Detected (off-the-shelf ground truth) -->
-              <div class="guidance-row-label row-detected">Detected</div>
-              <img class="guidance-cell" src="./static/images/prediction/ex1_depth_detected.png"
-                   alt="Detected depth — figures/Qualitative_prediction.pdf">
-              <img class="guidance-cell" src="./static/images/prediction/ex1_pose_detected.png"
-                   alt="Detected pose — figures/Qualitative_prediction.pdf">
-              <img class="guidance-cell" src="./static/images/prediction/ex1_edge_detected.png"
-                   alt="Detected edge — figures/Qualitative_prediction.pdf">
-              <!-- Row: Ours -->
-              <div class="guidance-row-label row-ours">Ours</div>
-              <img class="guidance-cell" src="./static/images/prediction/ex1_depth_ours.png"
-                   alt="ReaDiT depth — figures/Qualitative_prediction.pdf">
-              <img class="guidance-cell" src="./static/images/prediction/ex1_pose_ours.png"
-                   alt="ReaDiT pose — figures/Qualitative_prediction.pdf">
-              <img class="guidance-cell" src="./static/images/prediction/ex1_edge_ours.png"
-                   alt="ReaDiT edge — figures/Qualitative_prediction.pdf">
-            </div>
-          </div>
-        </div>
-
-        <!-- ── Slide 2 ── figures/suppl_Qualitative_prediction.pdf -->
-        <div class="item">
-          <div class="guidance-slide">
-            <div class="guidance-grid guidance-grid-3row">
-              <div class="guidance-row-label"></div>
-              <div class="guidance-col-label col-depth">Depth</div>
-              <div class="guidance-col-label col-pose">Pose</div>
-              <div class="guidance-col-label col-edge">Edge</div>
-              <div class="guidance-row-label row-input">Input</div>
-              <div class="guidance-cell guidance-placeholder">depth input</div>
-              <div class="guidance-cell guidance-placeholder">pose input</div>
-              <div class="guidance-cell guidance-placeholder">edge input</div>
-              <div class="guidance-row-label row-detected">Detected</div>
-              <div class="guidance-cell guidance-placeholder">depth detected</div>
-              <div class="guidance-cell guidance-placeholder">pose detected</div>
-              <div class="guidance-cell guidance-placeholder">edge detected</div>
-              <div class="guidance-row-label row-ours">Ours</div>
-              <div class="guidance-cell guidance-placeholder">depth ours</div>
-              <div class="guidance-cell guidance-placeholder">pose ours</div>
-              <div class="guidance-cell guidance-placeholder">edge ours</div>
-            </div>
-          </div>
-        </div>
-
-        <!-- Fallback: original full figure -->
-        <div class="item">
-          <img src="./static/images/Qualitative_prediction.png"
-               alt="Spatial prediction — figures/Qualitative_prediction.pdf"
-               style="width:100%;">
-        </div>
-
+      <!-- Task tabs -->
+      <div class="pred-tabs">
+        <button class="pred-tab-btn tab-depth is-active" onclick="predTab(this,'depth')">Depth</button>
+        <button class="pred-tab-btn tab-pose"            onclick="predTab(this,'pose')">Pose</button>
+        <button class="pred-tab-btn tab-edge"            onclick="predTab(this,'edge')">Edge</button>
       </div>
+
+      <!-- ── Depth panel ── -->
+      <div id="pred-panel-depth" class="pred-panel">
+        <div class="pred-example">
+          <div class="pred-example-col">
+            <p class="pred-col-label row-input">Input</p>
+            <img class="pred-img" src="./static/images/prediction/ex1_depth_input.png" alt="Input">
+          </div>
+          <div class="pred-example-col">
+            <p class="pred-col-label row-detected">Detected</p>
+            <img class="pred-img" src="./static/images/prediction/ex1_depth_detected.png" alt="Detected">
+          </div>
+          <div class="pred-example-col">
+            <p class="pred-col-label row-ours">Ours</p>
+            <img class="pred-img" src="./static/images/prediction/ex1_depth_ours.png" alt="Ours">
+          </div>
+        </div>
+        <div class="pred-example">
+          <div class="pred-example-col">
+            <p class="pred-col-label row-input">Input</p>
+            <div class="pred-img guidance-placeholder">ex2_depth_input.png</div>
+          </div>
+          <div class="pred-example-col">
+            <p class="pred-col-label row-detected">Detected</p>
+            <div class="pred-img guidance-placeholder">ex2_depth_detected.png</div>
+          </div>
+          <div class="pred-example-col">
+            <p class="pred-col-label row-ours">Ours</p>
+            <div class="pred-img guidance-placeholder">ex2_depth_ours.png</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Pose panel ── -->
+      <div id="pred-panel-pose" class="pred-panel" style="display:none">
+        <div class="pred-example">
+          <div class="pred-example-col">
+            <p class="pred-col-label row-input">Input</p>
+            <img class="pred-img" src="./static/images/prediction/ex1_pose_input.png" alt="Input">
+          </div>
+          <div class="pred-example-col">
+            <p class="pred-col-label row-detected">Detected</p>
+            <img class="pred-img" src="./static/images/prediction/ex1_pose_detected.png" alt="Detected">
+          </div>
+          <div class="pred-example-col">
+            <p class="pred-col-label row-ours">Ours</p>
+            <img class="pred-img" src="./static/images/prediction/ex1_pose_ours.png" alt="Ours">
+          </div>
+        </div>
+        <div class="pred-example">
+          <div class="pred-example-col">
+            <p class="pred-col-label row-input">Input</p>
+            <div class="pred-img guidance-placeholder">ex2_pose_input.png</div>
+          </div>
+          <div class="pred-example-col">
+            <p class="pred-col-label row-detected">Detected</p>
+            <div class="pred-img guidance-placeholder">ex2_pose_detected.png</div>
+          </div>
+          <div class="pred-example-col">
+            <p class="pred-col-label row-ours">Ours</p>
+            <div class="pred-img guidance-placeholder">ex2_pose_ours.png</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Edge panel ── -->
+      <div id="pred-panel-edge" class="pred-panel" style="display:none">
+        <div class="pred-example">
+          <div class="pred-example-col">
+            <p class="pred-col-label row-input">Input</p>
+            <img class="pred-img" src="./static/images/prediction/ex1_edge_input.png" alt="Input">
+          </div>
+          <div class="pred-example-col">
+            <p class="pred-col-label row-detected">Detected</p>
+            <img class="pred-img" src="./static/images/prediction/ex1_edge_detected.png" alt="Detected">
+          </div>
+          <div class="pred-example-col">
+            <p class="pred-col-label row-ours">Ours</p>
+            <img class="pred-img" src="./static/images/prediction/ex1_edge_ours.png" alt="Ours">
+          </div>
+        </div>
+        <div class="pred-example">
+          <div class="pred-example-col">
+            <p class="pred-col-label row-input">Input</p>
+            <div class="pred-img guidance-placeholder">ex2_edge_input.png</div>
+          </div>
+          <div class="pred-example-col">
+            <p class="pred-col-label row-detected">Detected</p>
+            <div class="pred-img guidance-placeholder">ex2_edge_detected.png</div>
+          </div>
+          <div class="pred-example-col">
+            <p class="pred-col-label row-ours">Ours</p>
+            <div class="pred-img guidance-placeholder">ex2_edge_ours.png</div>
+          </div>
+        </div>
+      </div>
+
     </div>
   </div>
 </section>
@@ -353,7 +384,7 @@
         <!-- ── Slide 4: Librarian / Painter ── -->
         <div class="item">
           <div class="guidance-slide">
-            <p class="guidance-prompt">A standing <strong>librarian</strong> in a studio</p>
+            <p class="guidance-prompt">A standing <strong>girl</strong> in a studio</p>
             <div class="guidance-grid">
               <div class="guidance-row-label"></div>
               <div class="guidance-col-label col-depth">Depth<span class="col-hint">librarian in vintage style</span></div>
@@ -418,49 +449,6 @@
   </div>
 </section>
 
-
-<!-- ============================================================
-     COMPARISON WITH PRIOR WORK
-     figures/Qualitative_comp.pdf  +  supplementals
-     ============================================================ -->
-<section class="section" style="padding-bottom:0.5rem;">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Comparison with Prior Work</h2>
-        <p>
-          ReaDiT vs. Readout Guidance (RG), ControlNet, and OminiControl across depth, pose, and edge tasks.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<section class="hero is-light is-small">
-  <div class="hero-body">
-    <div class="container">
-      <!-- figures/Qualitative_comp.pdf -->
-      <div id="comparison-carousel" class="carousel results-carousel">
-        <div class="item">
-          <img src="./static/images/Qualitative_comp.png"
-               alt="Qualitative comparison — figures/Qualitative_comp.pdf">
-        </div>
-        <div class="item">
-          <img src="./static/images/suppl_Qualitative_comp.png"
-               alt="Supplemental comparison — figures/suppl_Qualitative_comp.pdf">
-        </div>
-        <div class="item">
-          <img src="./static/images/suppl_Qualitative_comp2.png"
-               alt="Supplemental comparison 2 — figures/suppl_Qualitative_comp2.pdf">
-        </div>
-        <div class="item">
-          <img src="./static/images/suppl_Qualitative_comp4.png"
-               alt="Supplemental comparison 4 — figures/suppl_Qualitative_comp4.pdf">
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
 
 
 <!-- ============================================================
@@ -721,6 +709,16 @@
 
 
 <script>
+// Prediction task tabs
+function predTab(btn, task) {
+  document.querySelectorAll('.pred-tab-btn')
+    .forEach(function(b) { b.classList.remove('is-active'); });
+  document.querySelectorAll('.pred-panel')
+    .forEach(function(p) { p.style.display = 'none'; });
+  btn.classList.add('is-active');
+  document.getElementById('pred-panel-' + task).style.display = 'block';
+}
+
 // Dual guidance — cascading depth → pose selector
 var _dualDepth = 'alley', _dualPose = 'caudron';
 

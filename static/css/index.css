@@ -371,6 +371,71 @@ body {
   font-family: 'Google Sans', sans-serif;
 }
 
+/* ---- Prediction task tabs ---- */
+.pred-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 0.6rem;
+  margin-bottom: 1.5rem;
+}
+
+.pred-tab-btn {
+  padding: 0.35rem 1.4rem;
+  border-radius: 6px;
+  font-size: 1rem;
+  font-weight: 800;
+  font-family: 'Google Sans', sans-serif;
+  cursor: pointer;
+  border: 2px solid transparent;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  opacity: 0.55;
+  transition: opacity 0.2s, border-color 0.2s;
+}
+
+.pred-tab-btn.is-active { opacity: 1; }
+.pred-tab-btn.tab-depth { background: #f7d9ed; color: #7a2050; }
+.pred-tab-btn.tab-depth.is-active { border-color: #7a2050; }
+.pred-tab-btn.tab-pose  { background: #dec9ed; color: #4a2070; }
+.pred-tab-btn.tab-pose.is-active  { border-color: #4a2070; }
+.pred-tab-btn.tab-edge  { background: #bddede; color: #1a5555; }
+.pred-tab-btn.tab-edge.is-active  { border-color: #1a5555; }
+
+.pred-panel {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.pred-example {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.pred-example-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.3rem;
+  flex: 1;
+}
+
+.pred-col-label {
+  font-size: 1rem;
+  font-weight: 800;
+  font-family: 'Google Sans', sans-serif;
+}
+
+.pred-img {
+  width: 100%;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  display: block;
+}
+
 /* ---- Cascading dual selector (depth → pose) ---- */
 .dual-cascade {
   display: flex;
