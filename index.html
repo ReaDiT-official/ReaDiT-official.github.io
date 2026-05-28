@@ -618,7 +618,7 @@ function predTab(btn, task) {
   document.querySelectorAll('.pred-panel')
     .forEach(function(p) { p.style.display = 'none'; });
   btn.classList.add('is-active');
-  document.getElementById('pred-panel-' + task).style.display = 'block';
+  document.getElementById('pred-panel-' + task).style.display = 'grid';
 }
 
 // Dual guidance — data-driven cascading selector
