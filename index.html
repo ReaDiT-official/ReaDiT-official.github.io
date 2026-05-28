@@ -502,71 +502,26 @@
 
     <div class="dual-cascade">
 
-      <!-- Step 1: pick depth -->
+      <!-- Depth row — populated by dualInit() -->
       <div class="dual-cascade-group">
         <p class="dual-cascade-row-label">
           <span class="col-depth" style="padding:0.2rem 0.7rem; border-radius:5px;">Depth reference</span>
         </p>
-        <div class="dual-thumb-row">
-          <div class="dual-thumb is-selected" data-depth="alley" onclick="dualSelectDepth(this)">
-            <img src="./static/images/dual/alley/depth_alley.png" alt="Alley depth">
-            <span class="thumb-name">Alley</span>
-          </div>
-          <div class="dual-thumb" data-depth="stage" onclick="dualSelectDepth(this)">
-            <img src="./static/images/dual/stage/depth_ref.png" alt="Stage depth">
-            <span class="thumb-name">Stage</span>
-          </div>
-        </div>
+        <div id="dual-depth-row" class="dual-thumb-row"></div>
       </div>
 
-      <!-- Step 2: pick pose (options change with depth) -->
+      <!-- Pose row — repopulated on depth change -->
       <div class="dual-cascade-group">
         <p class="dual-cascade-row-label">
           <span class="col-pose" style="padding:0.2rem 0.7rem; border-radius:5px;">Pose reference</span>
         </p>
-        <!-- Alley depth: hold_caudron, run, sweep -->
-        <div id="dual-pose-row-alley" class="dual-thumb-row">
-          <div class="dual-thumb is-selected" data-pose="caudron" onclick="dualSelectPose(this)">
-            <img src="./static/images/dual/stage/pose_hold_caudron.png" alt="Hold caudron pose">
-            <span class="thumb-name">Hold caudron</span>
-          </div>
-          <div class="dual-thumb" data-pose="run" onclick="dualSelectPose(this)">
-            <img src="./static/images/dual/alley/guide_run.png" alt="Run pose">
-            <span class="thumb-name">Run</span>
-          </div>
-          <div class="dual-thumb" data-pose="sweep" onclick="dualSelectPose(this)">
-            <img src="./static/images/dual/alley/guide_sweep.png" alt="Sweep pose">
-            <span class="thumb-name">Sweep</span>
-          </div>
-        </div>
-        <!-- Stage depth: dance, hold_brush, hold_caudron, walk -->
-        <div id="dual-pose-row-stage" class="dual-thumb-row" style="display:none">
-          <div class="dual-thumb is-selected" data-pose="dance" onclick="dualSelectPose(this)">
-            <img src="./static/images/dual/stage/pose_dance.png" alt="Dance pose">
-            <span class="thumb-name">Dance</span>
-          </div>
-          <div class="dual-thumb" data-pose="brush" onclick="dualSelectPose(this)">
-            <img src="./static/images/dual/stage/pose_hold_brush.png" alt="Hold brush pose">
-            <span class="thumb-name">Hold brush</span>
-          </div>
-          <div class="dual-thumb" data-pose="caudron" onclick="dualSelectPose(this)">
-            <img src="./static/images/dual/stage/pose_hold_caudron.png" alt="Hold caudron pose">
-            <span class="thumb-name">Hold caudron</span>
-          </div>
-          <div class="dual-thumb" data-pose="walk" onclick="dualSelectPose(this)">
-            <img src="./static/images/dual/stage/pose_walk.png" alt="Walk pose">
-            <span class="thumb-name">Walk</span>
-          </div>
-        </div>
+        <div id="dual-pose-row" class="dual-thumb-row"></div>
       </div>
 
       <!-- Result -->
       <div class="dual-result-center">
-        <img id="dual-result-img" src="./static/images/dual/alley/guide_hold_caudron.png"
-             alt="Dual guidance result">
-        <p id="dual-result-caption" class="dual-result-caption">
-          Alley depth &nbsp;+&nbsp; Hold caudron pose
-        </p>
+        <img id="dual-result-img" src="" alt="Dual guidance result">
+        <p id="dual-result-caption" class="dual-result-caption"></p>
       </div>
 
     </div><!-- /dual-cascade -->
@@ -674,13 +629,17 @@
      BIBTEX
      ============================================================ -->
 <section class="section" id="BibTeX">
-  <div class="container is-max-desktop content">
-    <h2 class="title">BibTeX</h2>
-    <pre><code>@article{readit2026,
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title">BibTeX</h2>
+        <pre><code>@article{readit2026,
   title   = {ReaDiT Guidance: Control for Image and Video Generation using Diffusion Transformer Features},
   author  = {Anonymous},
   year    = {2026}
 }</code></pre>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -694,12 +653,9 @@
       <div class="column is-8">
         <div class="content has-text-centered">
           <p>
-            Website template adapted from
-            <a href="https://github.com/nerfies/nerfies.github.io">Nerfies</a>.
-            Interactive layout inspired by
-            <a href="https://unziplora.github.io">UnZipLoRA</a>.
-            Licensed under
-            <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/">CC BY-SA 4.0</a>.
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
+            You are free to borrow the of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
+            Commons Attribution-ShareAlike 4.0 International License</a>.
           </p>
         </div>
       </div>
@@ -719,61 +675,104 @@ function predTab(btn, task) {
   document.getElementById('pred-panel-' + task).style.display = 'block';
 }
 
-// Dual guidance — cascading depth → pose selector
-var _dualDepth = 'alley', _dualPose = 'caudron';
+// Dual guidance — data-driven cascading selector
+// To add a scene: add an entry to dualScenes.
+// thumb: null → shows a placeholder box (depth ref not yet available).
+// For pose thumbs, use stage/pose_*.png where available, else reuse the guide image.
+var dualScenes = [
+  {
+    label: 'Alley',
+    depth: './static/images/dual/alley/depth_alley.png',
+    poses: [
+      { label: 'Couple jump', thumb: './static/images/dual/alley/guide_couple_jump.png', result: './static/images/dual/alley/guide_couple_jump.png' },
+      { label: 'Hold caudron', thumb: './static/images/dual/stage/pose_hold_caudron.png', result: './static/images/dual/alley/guide_hold_caudron.png' },
+      { label: 'Run',          thumb: './static/images/dual/alley/guide_run.png',          result: './static/images/dual/alley/guide_run.png' },
+      { label: 'Sweep',        thumb: './static/images/dual/alley/guide_sweep.png',        result: './static/images/dual/alley/guide_sweep.png' }
+    ]
+  },
+  {
+    label: 'Lion',
+    depth: './static/images/dual/lion/stand.png',
+    poses: [
+      { label: 'Sweep',      thumb: './static/images/dual/lion/guide_sweep.png',      result: './static/images/dual/lion/guide_sweep.png' },
+      { label: 'Take photo', thumb: './static/images/dual/lion/guide_take_photo.png', result: './static/images/dual/lion/guide_take_photo.png' },
+      { label: 'Walk',       thumb: './static/images/dual/stage/pose_walk.png',       result: './static/images/dual/lion/guide_walk.png' }
+    ]
+  },
+  {
+    label: 'Stage',
+    depth: './static/images/dual/stage/depth_ref.png',
+    poses: [
+      { label: 'Dance',       thumb: './static/images/dual/stage/pose_dance.png',       result: './static/images/dual/stage/guide_dance.png' },
+      { label: 'Hold brush',  thumb: './static/images/dual/stage/pose_hold_brush.png',  result: './static/images/dual/stage/guide_hold_brush.png' },
+      { label: 'Hold caudron',thumb: './static/images/dual/stage/pose_hold_caudron.png',result: './static/images/dual/stage/guide_hold_caudron.png' },
+      { label: 'Hold pot',    thumb: './static/images/dual/stage/guide_hold_pot.png',   result: './static/images/dual/stage/guide_hold_pot.png' },
+      { label: 'Stand',       thumb: './static/images/dual/stage/guide_stand.png',      result: './static/images/dual/stage/guide_stand.png' },
+      { label: 'Take photo',  thumb: './static/images/dual/stage/guide_take_photo.png', result: './static/images/dual/stage/guide_take_photo.png' },
+      { label: 'Walk',        thumb: './static/images/dual/stage/pose_walk.png',        result: './static/images/dual/stage/guide_walk.png' }
+    ]
+  },
+  {
+    label: 'Sword',
+    depth: null,   // depth ref not yet available — shows placeholder
+    poses: [
+      { label: 'Hold book', thumb: './static/images/dual/sword/guide_hold_book.png', result: './static/images/dual/sword/guide_hold_book.png' },
+      { label: 'Hold pot',  thumb: './static/images/dual/sword/guide_hold_pot.png',  result: './static/images/dual/sword/guide_hold_pot.png' },
+      { label: 'Stand',     thumb: './static/images/dual/sword/guide_stand.png',     result: './static/images/dual/sword/guide_stand.png' },
+      { label: 'Walk',      thumb: './static/images/dual/stage/pose_walk.png',       result: './static/images/dual/sword/guide_walk.png' }
+    ]
+  }
+];
 
-var dualResultMap = {
-  'alley_caudron': './static/images/dual/alley/guide_hold_caudron.png',
-  'alley_run':     './static/images/dual/alley/guide_run.png',
-  'alley_sweep':   './static/images/dual/alley/guide_sweep.png',
-  'stage_dance':   './static/images/dual/stage/guide_dance.png',
-  'stage_brush':   './static/images/dual/stage/guide_hold_brush.png',
-  'stage_caudron': './static/images/dual/stage/guide_hold_caudron.png',
-  'stage_walk':    './static/images/dual/stage/guide_walk.png'
-};
-var dualCaptionMap = {
-  'alley_caudron': 'Alley depth  +  Hold caudron pose',
-  'alley_run':     'Alley depth  +  Running pose',
-  'alley_sweep':   'Alley depth  +  Sweeping pose',
-  'stage_dance':   'Stage depth  +  Dancing pose',
-  'stage_brush':   'Stage depth  +  Hold brush pose',
-  'stage_caudron': 'Stage depth  +  Hold caudron pose',
-  'stage_walk':    'Stage depth  +  Walking pose'
-};
-var dualFirstPose = { alley: 'caudron', stage: 'dance' };
+var _dualSceneIdx = 0, _dualPoseIdx = 0;
 
-function dualSelectDepth(el) {
-  document.querySelectorAll('.dual-thumb[data-depth]')
-    .forEach(function(t) { t.classList.remove('is-selected'); });
-  el.classList.add('is-selected');
-  _dualDepth = el.dataset.depth;
-  // swap pose row
-  document.querySelectorAll('[id^="dual-pose-row-"]')
-    .forEach(function(r) { r.style.display = 'none'; });
-  var poseRow = document.getElementById('dual-pose-row-' + _dualDepth);
-  poseRow.style.display = 'flex';
-  // select first pose in this depth
-  _dualPose = dualFirstPose[_dualDepth];
-  poseRow.querySelectorAll('.dual-thumb').forEach(function(t, i) {
-    t.classList.toggle('is-selected', i === 0);
+function dualInit() {
+  var depthRow = document.getElementById('dual-depth-row');
+  dualScenes.forEach(function(scene, i) {
+    var el = document.createElement('div');
+    el.className = 'dual-thumb' + (i === 0 ? ' is-selected' : '');
+    el.innerHTML = scene.depth
+      ? '<img src="' + scene.depth + '" alt="' + scene.label + ' depth"><span class="thumb-name">' + scene.label + '</span>'
+      : '<div class="dual-depth-placeholder"></div><span class="thumb-name">' + scene.label + '</span>';
+    el.addEventListener('click', (function(idx) { return function() { dualSelectScene(idx); }; })(i));
+    depthRow.appendChild(el);
   });
+  dualSelectScene(0);
+}
+
+function dualSelectScene(idx) {
+  _dualSceneIdx = idx;
+  document.getElementById('dual-depth-row').querySelectorAll('.dual-thumb')
+    .forEach(function(t, i) { t.classList.toggle('is-selected', i === idx); });
+  var poseRow = document.getElementById('dual-pose-row');
+  poseRow.innerHTML = '';
+  dualScenes[idx].poses.forEach(function(pose, i) {
+    var el = document.createElement('div');
+    el.className = 'dual-thumb' + (i === 0 ? ' is-selected' : '');
+    el.innerHTML = '<img src="' + pose.thumb + '" alt="' + pose.label + ' pose"><span class="thumb-name">' + pose.label + '</span>';
+    el.addEventListener('click', (function(pi) { return function() { dualSelectPose(pi); }; })(i));
+    poseRow.appendChild(el);
+  });
+  _dualPoseIdx = 0;
   updateDualResult();
 }
 
-function dualSelectPose(el) {
-  var poseRow = document.getElementById('dual-pose-row-' + _dualDepth);
-  poseRow.querySelectorAll('.dual-thumb')
-    .forEach(function(t) { t.classList.remove('is-selected'); });
-  el.classList.add('is-selected');
-  _dualPose = el.dataset.pose;
+function dualSelectPose(idx) {
+  _dualPoseIdx = idx;
+  document.getElementById('dual-pose-row').querySelectorAll('.dual-thumb')
+    .forEach(function(t, i) { t.classList.toggle('is-selected', i === idx); });
   updateDualResult();
 }
 
 function updateDualResult() {
-  var key = _dualDepth + '_' + _dualPose;
-  document.getElementById('dual-result-img').src = dualResultMap[key];
-  document.getElementById('dual-result-caption').textContent = dualCaptionMap[key];
+  var scene = dualScenes[_dualSceneIdx];
+  var pose  = scene.poses[_dualPoseIdx];
+  document.getElementById('dual-result-img').src = pose.result;
+  document.getElementById('dual-result-caption').textContent =
+    scene.label + ' depth  +  ' + pose.label + ' pose';
 }
+
+document.addEventListener('DOMContentLoaded', dualInit);
 </script>
 
 </body>

@@ -491,6 +491,14 @@ body {
   box-shadow: 0 0 0 3px #2276dd33;
 }
 
+.dual-depth-placeholder {
+  width: 82px;
+  height: 82px;
+  border-radius: 8px;
+  border: 3px dashed #ddd;
+  background: #f5f5f5;
+}
+
 .dual-thumb .thumb-name {
   font-size: 0.78rem;
   font-weight: 600;
