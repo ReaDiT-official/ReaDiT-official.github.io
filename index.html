@@ -290,7 +290,7 @@
         <!-- ── Slide 1: Chess Player ── figures/Qualitative_result_3_3cols.pdf -->
         <div class="item">
           <div class="guidance-slide">
-            <p class="guidance-prompt">A standing <strong>chess player</strong> in a studio</p>
+            <p class="guidance-prompt">A couple playing chess</p>
             <div class="guidance-grid">
               <div class="guidance-row-label"></div>
               <div class="guidance-col-label col-depth">Depth<span class="col-hint">in marble</span></div>
@@ -311,12 +311,12 @@
         <!-- ── Slide 2: Holding a Cup ── -->
         <div class="item">
           <div class="guidance-slide">
-            <p class="guidance-prompt">A standing person <strong>holding an object</strong> in a studio</p>
+            <p class="guidance-prompt">A person <strong>holding a cup</strong></p>
             <div class="guidance-grid">
               <div class="guidance-row-label"></div>
-              <div class="guidance-col-label col-depth">Depth<span class="col-hint">hold a cup</span></div>
-              <div class="guidance-col-label col-pose">Pose<span class="col-hint">hold newspaper</span></div>
-              <div class="guidance-col-label col-edge">Edge<span class="col-hint">hold a cup</span></div>
+              <div class="guidance-col-label col-depth">Depth<span class="col-hint">doctor, hold cup</span></div>
+              <div class="guidance-col-label col-pose">Pose<span class="col-hint">in pajamas, hold newspaper</span></div>
+              <div class="guidance-col-label col-edge">Edge<span class="col-hint">in suit, hold cup</span></div>
               <div class="guidance-row-label row-ref">Reference</div>
               <img class="guidance-cell" src="./static/images/guidance/hold_cup/depth_ref.png" alt="Depth reference">
               <img class="guidance-cell" src="./static/images/guidance/hold_cup/pose_ref.png"  alt="Pose reference">
@@ -332,12 +332,12 @@
         <!-- ── Slide 3: Holding an Umbrella ── -->
         <div class="item">
           <div class="guidance-slide">
-            <p class="guidance-prompt">A standing person <strong>holding an umbrella</strong> in a studio</p>
+            <p class="guidance-prompt">A girl <strong>holding an umbrella</strong></p>
             <div class="guidance-grid">
               <div class="guidance-row-label"></div>
-              <div class="guidance-col-label col-depth">Depth<span class="col-hint">hold umbrella</span></div>
-              <div class="guidance-col-label col-pose">Pose<span class="col-hint">hold flower</span></div>
-              <div class="guidance-col-label col-edge">Edge<span class="col-hint">hold umbrella</span></div>
+              <div class="guidance-col-label col-depth">Depth<span class="col-hint">Japanese style, in street</span></div>
+              <div class="guidance-col-label col-pose">Pose<span class="col-hint">hold flower, in studio</span></div>
+              <div class="guidance-col-label col-edge">Edge<span class="col-hint">Chinese style, in street</span></div>
               <div class="guidance-row-label row-ref">Reference</div>
               <img class="guidance-cell" src="./static/images/guidance/hold_umbrella/depth_ref.png" alt="Depth reference">
               <img class="guidance-cell" src="./static/images/guidance/hold_umbrella/pose_ref.png"  alt="Pose reference">
@@ -356,7 +356,7 @@
             <p class="guidance-prompt">A standing <strong>librarian</strong> in a studio</p>
             <div class="guidance-grid">
               <div class="guidance-row-label"></div>
-              <div class="guidance-col-label col-depth">Depth<span class="col-hint">vintage style</span></div>
+              <div class="guidance-col-label col-depth">Depth<span class="col-hint">librarian in vintage style</span></div>
               <div class="guidance-col-label col-pose">Pose<span class="col-hint">painter</span></div>
               <div class="guidance-col-label col-edge">Edge<span class="col-hint">librarian</span></div>
               <div class="guidance-row-label row-ref">Reference</div>
@@ -374,7 +374,7 @@
         <!-- ── Slide 5: Marble Figure ── -->
         <div class="item">
           <div class="guidance-slide">
-            <p class="guidance-prompt">A standing <strong>marble figure</strong> in a studio</p>
+            <p class="guidance-prompt">A standing <strong>model</strong> in a studio</p>
             <div class="guidance-grid">
               <div class="guidance-row-label"></div>
               <div class="guidance-col-label col-depth">Depth<span class="col-hint">marble figure</span></div>
@@ -395,11 +395,11 @@
         <!-- ── Slide 6: Sweeping ── -->
         <div class="item">
           <div class="guidance-slide">
-            <p class="guidance-prompt">A standing person <strong>sweeping</strong> in a studio</p>
+            <p class="guidance-prompt">A girl <strong>sweeping</strong></p>
             <div class="guidance-grid">
               <div class="guidance-row-label"></div>
               <div class="guidance-col-label col-depth">Depth<span class="col-hint">in a Dojo</span></div>
-              <div class="guidance-col-label col-pose">Pose<span class="col-hint">in a court</span></div>
+              <div class="guidance-col-label col-pose">Pose<span class="col-hint">playing baseball in a court</span></div>
               <div class="guidance-col-label col-edge">Edge<span class="col-hint">in a studio</span></div>
               <div class="guidance-row-label row-ref">Reference</div>
               <img class="guidance-cell" src="./static/images/guidance/sweep/depth_ref.png" alt="Depth reference">
@@ -503,66 +503,85 @@
 </section>
 -->
 
-<!-- Inconsistent dual guidance — unziplora-style 1×1 selector
+<!-- Inconsistent dual guidance — cascading depth → pose selector
      Source: figures/dual_inconsistent.pdf
-     Depth: alley (alley/depth_alley.png), stage (stage/depth_ref.png)
-     Pose:  caudron (stage/pose_hold_caudron.png), walk (stage/pose_walk.png) -->
+     Rows (depth): alley, stage   Columns (pose): per-depth subset -->
 <section class="section" style="padding-top:0.5rem; padding-bottom:1.5rem;">
   <div class="container is-max-desktop">
-    <p class="has-text-centered" style="font-weight:600; margin-bottom:1.2rem;">
+    <p class="has-text-centered" style="font-weight:600; margin-bottom:1.5rem;">
       Inconsistent — depth &amp; pose from <em>different</em> source images
     </p>
 
-    <div class="dual-selector">
-      <!-- Left: pick depth reference -->
-      <div class="dual-picker">
-        <h4 class="dual-picker-title col-depth">Depth</h4>
-        <div class="dual-thumb-group">
-          <div class="dual-thumb-wrap is-selected" data-kind="depth" data-key="alley"
-               onclick="dualPick(this)">
-            <img src="./static/images/dual/alley/depth_alley.png"
-                 alt="Depth: Alley">
-            <span>Alley</span>
+    <div class="dual-cascade">
+
+      <!-- Step 1: pick depth -->
+      <div class="dual-cascade-group">
+        <p class="dual-cascade-row-label">
+          <span class="col-depth" style="padding:0.2rem 0.7rem; border-radius:5px;">Depth reference</span>
+        </p>
+        <div class="dual-thumb-row">
+          <div class="dual-thumb is-selected" data-depth="alley" onclick="dualSelectDepth(this)">
+            <img src="./static/images/dual/alley/depth_alley.png" alt="Alley depth">
+            <span class="thumb-name">Alley</span>
           </div>
-          <div class="dual-thumb-wrap" data-kind="depth" data-key="stage"
-               onclick="dualPick(this)">
-            <img src="./static/images/dual/stage/depth_ref.png"
-                 alt="Depth: Stage">
-            <span>Stage</span>
+          <div class="dual-thumb" data-depth="stage" onclick="dualSelectDepth(this)">
+            <img src="./static/images/dual/stage/depth_ref.png" alt="Stage depth">
+            <span class="thumb-name">Stage</span>
           </div>
         </div>
       </div>
 
-      <!-- Centre: result -->
-      <div class="dual-result-box">
-        <img id="dual-result-img"
-             src="./static/images/dual/alley/guide_hold_caudron.png"
+      <!-- Step 2: pick pose (options change with depth) -->
+      <div class="dual-cascade-group">
+        <p class="dual-cascade-row-label">
+          <span class="col-pose" style="padding:0.2rem 0.7rem; border-radius:5px;">Pose reference</span>
+        </p>
+        <!-- Alley depth: hold_caudron, run, sweep -->
+        <div id="dual-pose-row-alley" class="dual-thumb-row">
+          <div class="dual-thumb is-selected" data-pose="caudron" onclick="dualSelectPose(this)">
+            <img src="./static/images/dual/stage/pose_hold_caudron.png" alt="Hold caudron pose">
+            <span class="thumb-name">Hold caudron</span>
+          </div>
+          <div class="dual-thumb" data-pose="run" onclick="dualSelectPose(this)">
+            <img src="./static/images/dual/alley/guide_run.png" alt="Run pose">
+            <span class="thumb-name">Run</span>
+          </div>
+          <div class="dual-thumb" data-pose="sweep" onclick="dualSelectPose(this)">
+            <img src="./static/images/dual/alley/guide_sweep.png" alt="Sweep pose">
+            <span class="thumb-name">Sweep</span>
+          </div>
+        </div>
+        <!-- Stage depth: dance, hold_brush, hold_caudron, walk -->
+        <div id="dual-pose-row-stage" class="dual-thumb-row" style="display:none">
+          <div class="dual-thumb is-selected" data-pose="dance" onclick="dualSelectPose(this)">
+            <img src="./static/images/dual/stage/pose_dance.png" alt="Dance pose">
+            <span class="thumb-name">Dance</span>
+          </div>
+          <div class="dual-thumb" data-pose="brush" onclick="dualSelectPose(this)">
+            <img src="./static/images/dual/stage/pose_hold_brush.png" alt="Hold brush pose">
+            <span class="thumb-name">Hold brush</span>
+          </div>
+          <div class="dual-thumb" data-pose="caudron" onclick="dualSelectPose(this)">
+            <img src="./static/images/dual/stage/pose_hold_caudron.png" alt="Hold caudron pose">
+            <span class="thumb-name">Hold caudron</span>
+          </div>
+          <div class="dual-thumb" data-pose="walk" onclick="dualSelectPose(this)">
+            <img src="./static/images/dual/stage/pose_walk.png" alt="Walk pose">
+            <span class="thumb-name">Walk</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Result -->
+      <div class="dual-result-center">
+        <img id="dual-result-img" src="./static/images/dual/alley/guide_hold_caudron.png"
              alt="Dual guidance result">
         <p id="dual-result-caption" class="dual-result-caption">
           Alley depth &nbsp;+&nbsp; Hold caudron pose
         </p>
       </div>
 
-      <!-- Right: pick pose reference -->
-      <div class="dual-picker">
-        <h4 class="dual-picker-title col-pose">Pose</h4>
-        <div class="dual-thumb-group">
-          <div class="dual-thumb-wrap is-selected" data-kind="pose" data-key="caudron"
-               onclick="dualPick(this)">
-            <img src="./static/images/dual/stage/pose_hold_caudron.png"
-                 alt="Pose: Hold caudron">
-            <span>Hold caudron</span>
-          </div>
-          <div class="dual-thumb-wrap" data-kind="pose" data-key="walk"
-               onclick="dualPick(this)">
-            <img src="./static/images/dual/stage/pose_walk.png"
-                 alt="Pose: Walk">
-            <span>Walk</span>
-          </div>
-        </div>
-      </div>
-    </div><!-- /dual-selector -->
-
+    </div><!-- /dual-cascade -->
   </div>
 </section>
 
@@ -702,31 +721,60 @@
 
 
 <script>
-// Dual guidance selector — unziplora-style 1×1
+// Dual guidance — cascading depth → pose selector
 var _dualDepth = 'alley', _dualPose = 'caudron';
 
 var dualResultMap = {
   'alley_caudron': './static/images/dual/alley/guide_hold_caudron.png',
-  'alley_walk':    './static/images/dual/alley/guide_run.png',
+  'alley_run':     './static/images/dual/alley/guide_run.png',
+  'alley_sweep':   './static/images/dual/alley/guide_sweep.png',
+  'stage_dance':   './static/images/dual/stage/guide_dance.png',
+  'stage_brush':   './static/images/dual/stage/guide_hold_brush.png',
   'stage_caudron': './static/images/dual/stage/guide_hold_caudron.png',
   'stage_walk':    './static/images/dual/stage/guide_walk.png'
 };
 var dualCaptionMap = {
   'alley_caudron': 'Alley depth  +  Hold caudron pose',
-  'alley_walk':    'Alley depth  +  Run pose',
+  'alley_run':     'Alley depth  +  Running pose',
+  'alley_sweep':   'Alley depth  +  Sweeping pose',
+  'stage_dance':   'Stage depth  +  Dancing pose',
+  'stage_brush':   'Stage depth  +  Hold brush pose',
   'stage_caudron': 'Stage depth  +  Hold caudron pose',
-  'stage_walk':    'Stage depth  +  Walk pose'
+  'stage_walk':    'Stage depth  +  Walking pose'
 };
+var dualFirstPose = { alley: 'caudron', stage: 'dance' };
 
-function dualPick(el) {
-  var kind = el.dataset.kind, key = el.dataset.key;
-  document.querySelectorAll('.dual-thumb-wrap[data-kind="' + kind + '"]')
-    .forEach(function(w) { w.classList.remove('is-selected'); });
+function dualSelectDepth(el) {
+  document.querySelectorAll('.dual-thumb[data-depth]')
+    .forEach(function(t) { t.classList.remove('is-selected'); });
   el.classList.add('is-selected');
-  if (kind === 'depth') _dualDepth = key; else _dualPose = key;
-  var mapKey = _dualDepth + '_' + _dualPose;
-  document.getElementById('dual-result-img').src = dualResultMap[mapKey];
-  document.getElementById('dual-result-caption').textContent = dualCaptionMap[mapKey];
+  _dualDepth = el.dataset.depth;
+  // swap pose row
+  document.querySelectorAll('[id^="dual-pose-row-"]')
+    .forEach(function(r) { r.style.display = 'none'; });
+  var poseRow = document.getElementById('dual-pose-row-' + _dualDepth);
+  poseRow.style.display = 'flex';
+  // select first pose in this depth
+  _dualPose = dualFirstPose[_dualDepth];
+  poseRow.querySelectorAll('.dual-thumb').forEach(function(t, i) {
+    t.classList.toggle('is-selected', i === 0);
+  });
+  updateDualResult();
+}
+
+function dualSelectPose(el) {
+  var poseRow = document.getElementById('dual-pose-row-' + _dualDepth);
+  poseRow.querySelectorAll('.dual-thumb')
+    .forEach(function(t) { t.classList.remove('is-selected'); });
+  el.classList.add('is-selected');
+  _dualPose = el.dataset.pose;
+  updateDualResult();
+}
+
+function updateDualResult() {
+  var key = _dualDepth + '_' + _dualPose;
+  document.getElementById('dual-result-img').src = dualResultMap[key];
+  document.getElementById('dual-result-caption').textContent = dualCaptionMap[key];
 }
 </script>
 

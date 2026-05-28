@@ -370,3 +370,85 @@ body {
   text-align: center;
   font-family: 'Google Sans', sans-serif;
 }
+
+/* ---- Cascading dual selector (depth → pose) ---- */
+.dual-cascade {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.1rem;
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.dual-cascade-group {
+  width: 100%;
+}
+
+.dual-cascade-row-label {
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: #888;
+  margin-bottom: 0.55rem;
+  font-family: 'Google Sans', sans-serif;
+}
+
+.dual-thumb-row {
+  display: flex;
+  flex-direction: row;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.dual-thumb {
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.dual-thumb img {
+  width: 82px;
+  height: 82px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 3px solid #ddd;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.dual-thumb:hover img { border-color: #90bfff; }
+
+.dual-thumb.is-selected img {
+  border-color: #2276dd;
+  box-shadow: 0 0 0 3px #2276dd33;
+}
+
+.dual-thumb .thumb-name {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: #444;
+  text-align: center;
+  max-width: 82px;
+  line-height: 1.2;
+}
+
+.dual-result-center {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: 0.25rem;
+}
+
+.dual-result-center > img {
+  width: 300px;
+  height: 300px;
+  object-fit: cover;
+  border-radius: 12px;
+  border: 2px solid #ccc;
+  transition: opacity 0.15s;
+}
