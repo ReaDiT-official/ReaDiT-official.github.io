@@ -287,63 +287,130 @@
     <div class="container">
       <div id="image-guidance-carousel" class="carousel results-carousel">
 
-        <!-- ── Slide 1: Lantern ── -->
-        <!-- Source subfigures: figures/Qualitative_result_3_3cols.pdf (lantern column) -->
+        <!-- ── Slide 1: Chess Player ── figures/Qualitative_result_3_3cols.pdf -->
         <div class="item">
           <div class="guidance-slide">
-            <p class="guidance-prompt">&ldquo;A standing <strong>lantern</strong> in a studio&rdquo;</p>
+            <p class="guidance-prompt">A standing <strong>chess player</strong> in a studio</p>
             <div class="guidance-grid">
-              <!-- Column labels -->
               <div class="guidance-row-label"></div>
-              <div class="guidance-col-label col-depth">Depth</div>
-              <div class="guidance-col-label col-pose">Pose</div>
-              <div class="guidance-col-label col-edge">Edge</div>
-              <!-- Row 1: Reference (guidance inputs) -->
+              <div class="guidance-col-label col-depth">Depth<span class="col-hint">in marble</span></div>
+              <div class="guidance-col-label col-pose">Pose<span class="col-hint">in a caf&eacute;</span></div>
+              <div class="guidance-col-label col-edge">Edge<span class="col-hint">in a library</span></div>
               <div class="guidance-row-label row-ref">Reference</div>
-              <img class="guidance-cell" src="./static/images/guidance/lantern_depth_ref.png"
-                   alt="Depth map — figures/Qualitative_result_3_3cols.pdf">
-              <img class="guidance-cell" src="./static/images/guidance/lantern_pose_ref.png"
-                   alt="Pose map — figures/Qualitative_result_3_3cols.pdf">
-              <img class="guidance-cell" src="./static/images/guidance/lantern_edge_ref.png"
-                   alt="Edge map — figures/Qualitative_result_3_3cols.pdf">
-              <!-- Row 2: Generated (guided outputs) -->
+              <img class="guidance-cell" src="./static/images/guidance/chess/depth_ref.png" alt="Depth reference">
+              <img class="guidance-cell" src="./static/images/guidance/chess/pose_ref.png"  alt="Pose reference">
+              <img class="guidance-cell" src="./static/images/guidance/chess/edge_ref.png"  alt="Edge reference">
               <div class="guidance-row-label row-gen">Generated</div>
-              <img class="guidance-cell" src="./static/images/guidance/lantern_depth_gen.png"
-                   alt="Depth-guided result — figures/Qualitative_result_3_3cols.pdf">
-              <img class="guidance-cell" src="./static/images/guidance/lantern_pose_gen.png"
-                   alt="Pose-guided result — figures/Qualitative_result_3_3cols.pdf">
-              <img class="guidance-cell" src="./static/images/guidance/lantern_edge_gen.png"
-                   alt="Edge-guided result — figures/Qualitative_result_3_3cols.pdf">
+              <img class="guidance-cell" src="./static/images/guidance/chess/depth_marble.png"     alt="Depth-guided: in marble">
+              <img class="guidance-cell" src="./static/images/guidance/chess/pose_in_cafe.png"     alt="Pose-guided: in a café">
+              <img class="guidance-cell" src="./static/images/guidance/chess/edge_in_library.png"  alt="Edge-guided: in a library">
             </div>
           </div>
         </div>
 
-        <!-- ── Slide 2: placeholder subject ── -->
+        <!-- ── Slide 2: Holding a Cup ── -->
         <div class="item">
           <div class="guidance-slide">
-            <p class="guidance-prompt">&ldquo;A standing <strong>[subject]</strong> in a studio&rdquo;</p>
+            <p class="guidance-prompt">A standing person <strong>holding an object</strong> in a studio</p>
             <div class="guidance-grid">
               <div class="guidance-row-label"></div>
-              <div class="guidance-col-label col-depth">Depth</div>
-              <div class="guidance-col-label col-pose">Pose</div>
-              <div class="guidance-col-label col-edge">Edge</div>
+              <div class="guidance-col-label col-depth">Depth<span class="col-hint">hold a cup</span></div>
+              <div class="guidance-col-label col-pose">Pose<span class="col-hint">hold newspaper</span></div>
+              <div class="guidance-col-label col-edge">Edge<span class="col-hint">hold a cup</span></div>
               <div class="guidance-row-label row-ref">Reference</div>
-              <div class="guidance-cell guidance-placeholder">depth ref</div>
-              <div class="guidance-cell guidance-placeholder">pose ref</div>
-              <div class="guidance-cell guidance-placeholder">edge ref</div>
+              <img class="guidance-cell" src="./static/images/guidance/hold_cup/depth_ref.png" alt="Depth reference">
+              <img class="guidance-cell" src="./static/images/guidance/hold_cup/pose_ref.png"  alt="Pose reference">
+              <img class="guidance-cell" src="./static/images/guidance/hold_cup/edge_ref.png"  alt="Edge reference">
               <div class="guidance-row-label row-gen">Generated</div>
-              <div class="guidance-cell guidance-placeholder">depth gen</div>
-              <div class="guidance-cell guidance-placeholder">pose gen</div>
-              <div class="guidance-cell guidance-placeholder">edge gen</div>
+              <img class="guidance-cell" src="./static/images/guidance/hold_cup/depth_hold_a_cup.png"    alt="Depth-guided: hold a cup">
+              <img class="guidance-cell" src="./static/images/guidance/hold_cup/pose_hold_newspaper.png" alt="Pose-guided: hold newspaper">
+              <img class="guidance-cell" src="./static/images/guidance/hold_cup/edge_hold_a_cup.png"     alt="Edge-guided: hold a cup">
             </div>
           </div>
         </div>
 
-        <!-- ── Fallback: original full figure ── -->
+        <!-- ── Slide 3: Holding an Umbrella ── -->
         <div class="item">
-          <img src="./static/images/Qualitative_result_3_3cols.png"
-               alt="Spatial image guidance — figures/Qualitative_result_3_3cols.pdf"
-               style="width:100%;">
+          <div class="guidance-slide">
+            <p class="guidance-prompt">A standing person <strong>holding an umbrella</strong> in a studio</p>
+            <div class="guidance-grid">
+              <div class="guidance-row-label"></div>
+              <div class="guidance-col-label col-depth">Depth<span class="col-hint">hold umbrella</span></div>
+              <div class="guidance-col-label col-pose">Pose<span class="col-hint">hold flower</span></div>
+              <div class="guidance-col-label col-edge">Edge<span class="col-hint">hold umbrella</span></div>
+              <div class="guidance-row-label row-ref">Reference</div>
+              <img class="guidance-cell" src="./static/images/guidance/hold_umbrella/depth_ref.png" alt="Depth reference">
+              <img class="guidance-cell" src="./static/images/guidance/hold_umbrella/pose_ref.png"  alt="Pose reference">
+              <img class="guidance-cell" src="./static/images/guidance/hold_umbrella/edge_ref.png"  alt="Edge reference">
+              <div class="guidance-row-label row-gen">Generated</div>
+              <img class="guidance-cell" src="./static/images/guidance/hold_umbrella/depth_hold_umbrella.png" alt="Depth-guided: hold umbrella">
+              <img class="guidance-cell" src="./static/images/guidance/hold_umbrella/pose_hold_flower.png"    alt="Pose-guided: hold flower">
+              <img class="guidance-cell" src="./static/images/guidance/hold_umbrella/edge_hold_umbrella.png"  alt="Edge-guided: hold umbrella">
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Slide 4: Librarian / Painter ── -->
+        <div class="item">
+          <div class="guidance-slide">
+            <p class="guidance-prompt">A standing <strong>librarian</strong> in a studio</p>
+            <div class="guidance-grid">
+              <div class="guidance-row-label"></div>
+              <div class="guidance-col-label col-depth">Depth<span class="col-hint">vintage style</span></div>
+              <div class="guidance-col-label col-pose">Pose<span class="col-hint">painter</span></div>
+              <div class="guidance-col-label col-edge">Edge<span class="col-hint">librarian</span></div>
+              <div class="guidance-row-label row-ref">Reference</div>
+              <img class="guidance-cell" src="./static/images/guidance/librarian/depth_ref.png"  alt="Depth reference">
+              <img class="guidance-cell" src="./static/images/guidance/librarian/pose_ref.png"   alt="Pose reference">
+              <img class="guidance-cell" src="./static/images/guidance/librarian/edge_pose.png"  alt="Edge reference">
+              <div class="guidance-row-label row-gen">Generated</div>
+              <img class="guidance-cell" src="./static/images/guidance/librarian/depth_in_vintage_style.png" alt="Depth-guided: vintage style">
+              <img class="guidance-cell" src="./static/images/guidance/librarian/pose_painter.png"           alt="Pose-guided: painter">
+              <img class="guidance-cell" src="./static/images/guidance/librarian/edge_librarian.png"         alt="Edge-guided: librarian">
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Slide 5: Marble Figure ── -->
+        <div class="item">
+          <div class="guidance-slide">
+            <p class="guidance-prompt">A standing <strong>marble figure</strong> in a studio</p>
+            <div class="guidance-grid">
+              <div class="guidance-row-label"></div>
+              <div class="guidance-col-label col-depth">Depth<span class="col-hint">marble figure</span></div>
+              <div class="guidance-col-label col-pose">Pose<span class="col-hint">marble figure</span></div>
+              <div class="guidance-col-label col-edge">Edge<span class="col-hint">marble sculpture</span></div>
+              <div class="guidance-row-label row-ref">Reference</div>
+              <img class="guidance-cell" src="./static/images/guidance/marble/depth_ref.png" alt="Depth reference">
+              <img class="guidance-cell" src="./static/images/guidance/marble/pose_ref.png"  alt="Pose reference">
+              <img class="guidance-cell" src="./static/images/guidance/marble/edge_ref.png"  alt="Edge reference">
+              <div class="guidance-row-label row-gen">Generated</div>
+              <img class="guidance-cell" src="./static/images/guidance/marble/depth.png"       alt="Depth-guided: marble figure">
+              <img class="guidance-cell" src="./static/images/guidance/marble/pose.png"        alt="Pose-guided: marble figure">
+              <img class="guidance-cell" src="./static/images/guidance/marble/edge_marble.png" alt="Edge-guided: marble sculpture">
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Slide 6: Sweeping ── -->
+        <div class="item">
+          <div class="guidance-slide">
+            <p class="guidance-prompt">A standing person <strong>sweeping</strong> in a studio</p>
+            <div class="guidance-grid">
+              <div class="guidance-row-label"></div>
+              <div class="guidance-col-label col-depth">Depth<span class="col-hint">in a Dojo</span></div>
+              <div class="guidance-col-label col-pose">Pose<span class="col-hint">in a court</span></div>
+              <div class="guidance-col-label col-edge">Edge<span class="col-hint">in a studio</span></div>
+              <div class="guidance-row-label row-ref">Reference</div>
+              <img class="guidance-cell" src="./static/images/guidance/sweep/depth_ref.png" alt="Depth reference">
+              <img class="guidance-cell" src="./static/images/guidance/sweep/pose_ref.png"  alt="Pose reference">
+              <img class="guidance-cell" src="./static/images/guidance/sweep/edge_ref.png"  alt="Edge reference">
+              <div class="guidance-row-label row-gen">Generated</div>
+              <img class="guidance-cell" src="./static/images/guidance/sweep/depth_in_Dojo.png"   alt="Depth-guided: in a Dojo">
+              <img class="guidance-cell" src="./static/images/guidance/sweep/pose_in_court.png"   alt="Pose-guided: in a court">
+              <img class="guidance-cell" src="./static/images/guidance/sweep/edge_in_studio.png"  alt="Edge-guided: in a studio">
+            </div>
+          </div>
         </div>
 
       </div><!-- /carousel -->

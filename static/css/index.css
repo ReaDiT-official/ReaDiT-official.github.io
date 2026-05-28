@@ -213,6 +213,21 @@ body {
   padding: 0.3rem 0.6rem;
   border-radius: 6px;
   font-family: 'Google Sans', sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.1rem;
+}
+
+.col-hint {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 500;
+  text-transform: none;
+  letter-spacing: 0;
+  font-style: italic;
+  opacity: 0.88;
+  line-height: 1.2;
 }
 
 /* Paper-matching task colors */
@@ -222,10 +237,10 @@ body {
 
 /* -- Row labels -- */
 .guidance-row-label {
-  font-size: 0.95rem;
-  font-weight: 700;
+  font-size: 1.1rem;
+  font-weight: 800;
   text-align: right;
-  padding-right: 0.55rem;
+  padding-right: 0.6rem;
   white-space: nowrap;
   font-family: 'Google Sans', sans-serif;
 }
