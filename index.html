@@ -191,101 +191,10 @@
         <button class="pred-tab-btn tab-edge"            onclick="predTab(this,'edge')">Edge</button>
       </div>
 
-      <!-- ── Depth panel ── -->
-      <div id="pred-panel-depth" class="pred-panel">
-        <div class="pred-example">
-          <div class="pred-example-col">
-            <p class="pred-col-label row-input">Input</p>
-            <img class="pred-img" src="./static/images/prediction/ex1_depth_input.png" alt="Input">
-          </div>
-          <div class="pred-example-col">
-            <p class="pred-col-label row-detected">Detected</p>
-            <img class="pred-img" src="./static/images/prediction/ex1_depth_detected.png" alt="Detected">
-          </div>
-          <div class="pred-example-col">
-            <p class="pred-col-label row-ours">Ours</p>
-            <img class="pred-img" src="./static/images/prediction/ex1_depth_ours.png" alt="Ours">
-          </div>
-        </div>
-        <div class="pred-example">
-          <div class="pred-example-col">
-            <p class="pred-col-label row-input">Input</p>
-            <div class="pred-img guidance-placeholder">ex2_depth_input.png</div>
-          </div>
-          <div class="pred-example-col">
-            <p class="pred-col-label row-detected">Detected</p>
-            <div class="pred-img guidance-placeholder">ex2_depth_detected.png</div>
-          </div>
-          <div class="pred-example-col">
-            <p class="pred-col-label row-ours">Ours</p>
-            <div class="pred-img guidance-placeholder">ex2_depth_ours.png</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ── Pose panel ── -->
-      <div id="pred-panel-pose" class="pred-panel" style="display:none">
-        <div class="pred-example">
-          <div class="pred-example-col">
-            <p class="pred-col-label row-input">Input</p>
-            <img class="pred-img" src="./static/images/prediction/ex1_pose_input.png" alt="Input">
-          </div>
-          <div class="pred-example-col">
-            <p class="pred-col-label row-detected">Detected</p>
-            <img class="pred-img" src="./static/images/prediction/ex1_pose_detected.png" alt="Detected">
-          </div>
-          <div class="pred-example-col">
-            <p class="pred-col-label row-ours">Ours</p>
-            <img class="pred-img" src="./static/images/prediction/ex1_pose_ours.png" alt="Ours">
-          </div>
-        </div>
-        <div class="pred-example">
-          <div class="pred-example-col">
-            <p class="pred-col-label row-input">Input</p>
-            <div class="pred-img guidance-placeholder">ex2_pose_input.png</div>
-          </div>
-          <div class="pred-example-col">
-            <p class="pred-col-label row-detected">Detected</p>
-            <div class="pred-img guidance-placeholder">ex2_pose_detected.png</div>
-          </div>
-          <div class="pred-example-col">
-            <p class="pred-col-label row-ours">Ours</p>
-            <div class="pred-img guidance-placeholder">ex2_pose_ours.png</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- ── Edge panel ── -->
-      <div id="pred-panel-edge" class="pred-panel" style="display:none">
-        <div class="pred-example">
-          <div class="pred-example-col">
-            <p class="pred-col-label row-input">Input</p>
-            <img class="pred-img" src="./static/images/prediction/ex1_edge_input.png" alt="Input">
-          </div>
-          <div class="pred-example-col">
-            <p class="pred-col-label row-detected">Detected</p>
-            <img class="pred-img" src="./static/images/prediction/ex1_edge_detected.png" alt="Detected">
-          </div>
-          <div class="pred-example-col">
-            <p class="pred-col-label row-ours">Ours</p>
-            <img class="pred-img" src="./static/images/prediction/ex1_edge_ours.png" alt="Ours">
-          </div>
-        </div>
-        <div class="pred-example">
-          <div class="pred-example-col">
-            <p class="pred-col-label row-input">Input</p>
-            <div class="pred-img guidance-placeholder">ex2_edge_input.png</div>
-          </div>
-          <div class="pred-example-col">
-            <p class="pred-col-label row-detected">Detected</p>
-            <div class="pred-img guidance-placeholder">ex2_edge_detected.png</div>
-          </div>
-          <div class="pred-example-col">
-            <p class="pred-col-label row-ours">Ours</p>
-            <div class="pred-img guidance-placeholder">ex2_edge_ours.png</div>
-          </div>
-        </div>
-      </div>
+      <!-- panels populated by predInit() -->
+      <div id="pred-panel-depth" class="pred-panel"></div>
+      <div id="pred-panel-pose"  class="pred-panel" style="display:none"></div>
+      <div id="pred-panel-edge"  class="pred-panel" style="display:none"></div>
 
     </div>
   </div>
@@ -665,7 +574,47 @@
 
 
 <script>
-// Prediction task tabs
+// Prediction — data config
+// orig: {task}_orig/{base}_orig.png
+// gt:   {task}_gt/{base}_orig.png
+// ours: {task}_rg/{base}_pred.png
+var predData = {
+  depth: ['2008_000038_idx19','2008_000063_idx31','2008_000098_idx47',
+          '2008_000100_idx48','2008_000171_idx91','2008_000186_idx99'],
+  pose:  ['2008_000155_idx18','2008_000200_idx22','2008_000224_idx31',
+          '2008_000228_idx33','2008_000323_idx60','2008_000329_idx64'],
+  edge:  ['2008_000079_idx38','2008_000114_idx57','2008_000126_idx64',
+          '2008_000157_idx79','2008_000167_idx87','2008_000173_idx93']
+};
+
+function predInit() {
+  var root = './static/images/prediction/';
+  ['depth','pose','edge'].forEach(function(task) {
+    var panel = document.getElementById('pred-panel-' + task);
+    // column-label header row
+    var hdr = document.createElement('div');
+    hdr.className = 'pred-example pred-header';
+    hdr.innerHTML =
+      '<div class="pred-example-col"><p class="pred-col-label row-input">Input</p></div>' +
+      '<div class="pred-example-col"><p class="pred-col-label row-detected">GT</p></div>' +
+      '<div class="pred-example-col"><p class="pred-col-label row-ours">Ours</p></div>';
+    panel.appendChild(hdr);
+    // image rows
+    predData[task].forEach(function(base) {
+      var orig = root + task + '_orig/' + base + '_orig.png';
+      var gt   = root + task + '_gt/'   + base + '_orig.png';
+      var ours = root + task + '_rg/'   + base + '_pred.png';
+      var row = document.createElement('div');
+      row.className = 'pred-example';
+      row.innerHTML =
+        '<div class="pred-example-col"><img class="pred-img" src="' + orig + '" alt="Input"></div>' +
+        '<div class="pred-example-col"><img class="pred-img" src="' + gt   + '" alt="GT"></div>' +
+        '<div class="pred-example-col"><img class="pred-img" src="' + ours + '" alt="Ours"></div>';
+      panel.appendChild(row);
+    });
+  });
+}
+
 function predTab(btn, task) {
   document.querySelectorAll('.pred-tab-btn')
     .forEach(function(b) { b.classList.remove('is-active'); });
@@ -772,7 +721,10 @@ function updateDualResult() {
     scene.label + ' depth  +  ' + pose.label + ' pose';
 }
 
-document.addEventListener('DOMContentLoaded', dualInit);
+document.addEventListener('DOMContentLoaded', function() {
+  predInit();
+  dualInit();
+});
 </script>
 
 </body>
