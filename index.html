@@ -35,13 +35,23 @@
       <div class="columns is-centered">
         <div class="column has-text-centered">
 
-          <h1 class="title is-1 publication-title">
+          <h1 class="title is-2 publication-title">
             ReaDiT Guidance: Control for Image and Video Generation<br>
             using Diffusion Transformer Features
           </h1>
 
           <div class="is-size-5 publication-authors">
-            <span class="author-block"><a href="#">Anonymous Authors</a></span>
+            <span class="author-block"><a href="https://jmahajan117.github.io/">Jay Maanav Mahajan</a><sup>1*</sup>,&nbsp;</span>
+            <span class="author-block"><a href="https://ruachang.github.io/">Chang Liu</a><sup>1*</sup>,&nbsp;</span>
+            <span class="author-block"><a href="mailto:raufm2@illinois.edu">Rauf Makharov</a><sup>1</sup>,&nbsp;</span>
+            <span class="author-block"><a href="https://virajshah.com/">Viraj Shah</a><sup>2</sup>,&nbsp;</span>
+            <span class="author-block"><a href="https://www.alexander-schwing.de/">Alex Schwing</a><sup>1</sup>,&nbsp;</span>
+            <span class="author-block"><a href="https://slazebni.cs.illinois.edu/">Svetlana Lazebnik</a><sup>1</sup></span>
+          </div>
+
+          <div class="is-size-5 publication-authors" style="margin-top:0.4rem;">
+            <span class="author-block"><sup>1</sup>UIUC&nbsp;&nbsp;</span>
+            <span class="author-block"><sup>2</sup>Google</span>
           </div>
 
           <div class="column has-text-centered">
@@ -123,8 +133,9 @@
 
         <!-- Method overview figure — figures/Method_figure_draft2.pdf -->
         <figure class="image" style="margin-bottom:1.5rem;">
-          <img src="./static/images/Method_figure_draft2.png"
-               alt="Method overview — figures/Method_figure_draft2.pdf">
+          <img src="./static/images/Method_figure_draft2_v2.png"
+               alt="Method overview — figures/Method_figure_draft2.png"
+               style="max-width:90%; margin:auto; display:block;">
           <figcaption class="has-text-centered" style="font-size:0.9rem; margin-top:0.4rem; color:#555;">
             <strong>Method Overview.</strong>
             <em>Left:</em> ReaDiT takes a single intermediate DiT feature and guides generation by optimizing the latent <em>z<sub>t</sub></em>.
@@ -134,8 +145,8 @@
 
         <!-- Architecture figure — figures/Readout_arch3.pdf -->
         <figure class="image" style="margin-bottom:1.5rem;">
-          <img src="./static/images/Readout_arch3.png"
-               alt="ReaDiT architecture — figures/Readout_arch3.pdf"
+          <img src="./static/images/Readout_arch3_v2.png"
+               alt="ReaDiT architecture — figures/Readout_arch3.png"
                style="max-width:85%; margin:auto; display:block;">
           <figcaption class="has-text-centered" style="font-size:0.9rem; margin-top:0.4rem; color:#555;">
             <strong>ReaDiT Architecture.</strong>
@@ -146,7 +157,7 @@
         <!-- Optical flow figure — figures/optical_flow_2.pdf (commented out for now)
         <figure class="image">
           <img src="./static/images/optical_flow_2.png"
-               alt="Optical flow prediction — figures/optical_flow_2.pdf"
+               alt="Optical flow prediction — figures/optical_flow_2.png"
                style="max-width:80%; margin:auto; display:block;">
           <figcaption class="has-text-centered" style="font-size:0.9rem; margin-top:0.4rem; color:#555;">
             <strong>Optical Flow Prediction.</strong>
@@ -542,7 +553,7 @@
     <div class="columns is-centered">
       <div class="column is-four-fifths">
         <h2 class="title">BibTeX</h2>
-        <pre><code>@article{readit2026,
+        <pre><code>@misc{readit2026,
   title   = {ReaDiT Guidance: Control for Image and Video Generation using Diffusion Transformer Features},
   author  = {Anonymous},
   year    = {2026}
