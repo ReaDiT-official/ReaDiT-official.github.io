@@ -504,9 +504,9 @@
 -->
 
 <!-- Inconsistent dual guidance — unziplora-style 1×1 selector
-     Upload subfigures to static/images/dual/ once ready.
-     Reference: figures/dual_inconsistent.pdf
-     depth_A/B.png, pose_A/B.png, result_{depth}_{pose}.png -->
+     Source: figures/dual_inconsistent.pdf
+     Depth: alley (alley/depth_alley.png), stage (stage/depth_ref.png)
+     Pose:  caudron (stage/pose_hold_caudron.png), walk (stage/pose_walk.png) -->
 <section class="section" style="padding-top:0.5rem; padding-bottom:1.5rem;">
   <div class="container is-max-desktop">
     <p class="has-text-centered" style="font-weight:600; margin-bottom:1.2rem;">
@@ -514,21 +514,21 @@
     </p>
 
     <div class="dual-selector">
-      <!-- Left: pick depth -->
+      <!-- Left: pick depth reference -->
       <div class="dual-picker">
         <h4 class="dual-picker-title col-depth">Depth</h4>
         <div class="dual-thumb-group">
-          <div class="dual-thumb-wrap is-selected" data-kind="depth" data-key="A"
+          <div class="dual-thumb-wrap is-selected" data-kind="depth" data-key="alley"
                onclick="dualPick(this)">
-            <img src="./static/images/dual/depth_A.png"
-                 alt="Depth A — figures/dual_inconsistent.pdf">
-            <span>Depth A</span>
+            <img src="./static/images/dual/alley/depth_alley.png"
+                 alt="Depth: Alley">
+            <span>Alley</span>
           </div>
-          <div class="dual-thumb-wrap" data-kind="depth" data-key="B"
+          <div class="dual-thumb-wrap" data-kind="depth" data-key="stage"
                onclick="dualPick(this)">
-            <img src="./static/images/dual/depth_B.png"
-                 alt="Depth B — figures/dual_inconsistent.pdf">
-            <span>Depth B</span>
+            <img src="./static/images/dual/stage/depth_ref.png"
+                 alt="Depth: Stage">
+            <span>Stage</span>
           </div>
         </div>
       </div>
@@ -536,28 +536,28 @@
       <!-- Centre: result -->
       <div class="dual-result-box">
         <img id="dual-result-img"
-             src="./static/images/dual/result_A_A.png"
-             alt="Dual guidance result — figures/dual_inconsistent.pdf">
+             src="./static/images/dual/alley/guide_hold_caudron.png"
+             alt="Dual guidance result">
         <p id="dual-result-caption" class="dual-result-caption">
-          Depth A &nbsp;+&nbsp; Pose A
+          Alley depth &nbsp;+&nbsp; Hold caudron pose
         </p>
       </div>
 
-      <!-- Right: pick pose -->
+      <!-- Right: pick pose reference -->
       <div class="dual-picker">
         <h4 class="dual-picker-title col-pose">Pose</h4>
         <div class="dual-thumb-group">
-          <div class="dual-thumb-wrap is-selected" data-kind="pose" data-key="A"
+          <div class="dual-thumb-wrap is-selected" data-kind="pose" data-key="caudron"
                onclick="dualPick(this)">
-            <img src="./static/images/dual/pose_A.png"
-                 alt="Pose A — figures/dual_inconsistent.pdf">
-            <span>Pose A</span>
+            <img src="./static/images/dual/stage/pose_hold_caudron.png"
+                 alt="Pose: Hold caudron">
+            <span>Hold caudron</span>
           </div>
-          <div class="dual-thumb-wrap" data-kind="pose" data-key="B"
+          <div class="dual-thumb-wrap" data-kind="pose" data-key="walk"
                onclick="dualPick(this)">
-            <img src="./static/images/dual/pose_B.png"
-                 alt="Pose B — figures/dual_inconsistent.pdf">
-            <span>Pose B</span>
+            <img src="./static/images/dual/stage/pose_walk.png"
+                 alt="Pose: Walk">
+            <span>Walk</span>
           </div>
         </div>
       </div>
@@ -703,25 +703,30 @@
 
 <script>
 // Dual guidance selector — unziplora-style 1×1
-var _dualDepth = 'A', _dualPose = 'A';
+var _dualDepth = 'alley', _dualPose = 'caudron';
+
+var dualResultMap = {
+  'alley_caudron': './static/images/dual/alley/guide_hold_caudron.png',
+  'alley_walk':    './static/images/dual/alley/guide_run.png',
+  'stage_caudron': './static/images/dual/stage/guide_hold_caudron.png',
+  'stage_walk':    './static/images/dual/stage/guide_walk.png'
+};
+var dualCaptionMap = {
+  'alley_caudron': 'Alley depth  +  Hold caudron pose',
+  'alley_walk':    'Alley depth  +  Run pose',
+  'stage_caudron': 'Stage depth  +  Hold caudron pose',
+  'stage_walk':    'Stage depth  +  Walk pose'
+};
 
 function dualPick(el) {
-  var kind = el.dataset.kind;   // 'depth' or 'pose'
-  var key  = el.dataset.key;    // 'A' or 'B'
-
-  // Update selection state for this group
+  var kind = el.dataset.kind, key = el.dataset.key;
   document.querySelectorAll('.dual-thumb-wrap[data-kind="' + kind + '"]')
     .forEach(function(w) { w.classList.remove('is-selected'); });
   el.classList.add('is-selected');
-
-  if (kind === 'depth') _dualDepth = key;
-  else                  _dualPose  = key;
-
-  // Swap result image + caption
-  var src = './static/images/dual/result_' + _dualDepth + '_' + _dualPose + '.png';
-  document.getElementById('dual-result-img').src = src;
-  document.getElementById('dual-result-caption').textContent =
-    'Depth ' + _dualDepth + '  +  Pose ' + _dualPose;
+  if (kind === 'depth') _dualDepth = key; else _dualPose = key;
+  var mapKey = _dualDepth + '_' + _dualPose;
+  document.getElementById('dual-result-img').src = dualResultMap[mapKey];
+  document.getElementById('dual-result-caption').textContent = dualCaptionMap[mapKey];
 }
 </script>
 
