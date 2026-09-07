@@ -12,13 +12,12 @@
   <link rel="stylesheet" href="./static/css/bulma.min.css">
   <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
   <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
-  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css">
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
   <link rel="stylesheet" href="./static/css/index.css">
   <link rel="icon" href="./static/images/favicon_readit.svg">
 
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script defer src="./static/js/fontawesome.all.min.js"></script>
   <script src="./static/js/bulma-carousel.min.js"></script>
   <script src="./static/js/bulma-slider.min.js"></script>
   <script src="./static/js/index.js"></script>
@@ -41,17 +40,16 @@
           </h1>
 
           <div class="is-size-5 publication-authors">
-            <span class="author-block"><a href="https://jmahajan117.github.io/">Jay Maanav Mahajan</a><sup>1*</sup>,&nbsp;</span>
-            <span class="author-block"><a href="https://ruachang.github.io/">Chang Liu</a><sup>1*</sup>,&nbsp;</span>
-            <span class="author-block"><a href="mailto:raufm2@illinois.edu">Rauf Makharov</a><sup>1</sup>,&nbsp;</span>
-            <span class="author-block"><a href="https://virajshah.com/">Viraj Shah</a><sup>2</sup>,&nbsp;</span>
-            <span class="author-block"><a href="https://www.alexander-schwing.de/">Alex Schwing</a><sup>1&dagger;</sup>,&nbsp;</span>
-            <span class="author-block"><a href="https://slazebni.cs.illinois.edu/">Svetlana Lazebnik</a><sup>1&dagger;</sup></span>
+            <span class="author-block"><a href="https://jmahajan117.github.io/">Jay Maanav Mahajan</a><sup>*</sup>,&nbsp;</span>
+            <span class="author-block"><a href="https://ruachang.github.io/">Chang Liu</a><sup>*</sup>,&nbsp;</span>
+            <span class="author-block"><a href="mailto:raufm2@illinois.edu">Rauf Makharov</a>,&nbsp;</span>
+            <span class="author-block"><a href="https://virajshah.com/">Viraj Shah</a>,&nbsp;</span>
+            <span class="author-block"><a href="https://www.alexander-schwing.de/">Alex Schwing</a><sup>&dagger;</sup>,&nbsp;</span>
+            <span class="author-block"><a href="https://slazebni.cs.illinois.edu/">Svetlana Lazebnik</a><sup>&dagger;</sup></span>
           </div>
 
           <div class="is-size-5 publication-authors" style="margin-top:0.4rem;">
-            <span class="author-block"><sup>1</sup>UIUC&nbsp;&nbsp;</span>
-            <span class="author-block"><sup>2</sup>Google</span>
+            <span class="author-block">University of Illinois Urbana-Champaign</span>
           </div>
 
           <div class="is-size-6 publication-authors" style="margin-top:0.4rem; color:#555;">
@@ -62,16 +60,24 @@
           <div class="column has-text-centered">
             <div class="publication-links">
               <span class="link-block">
-                <span class="external-link button is-normal is-rounded is-dark" style="opacity:0.65; cursor:default;">
+                <a href="https://arxiv.org/abs/2609.04649"
+                   class="external-link button is-normal is-rounded is-dark">
                   <span class="icon"><i class="ai ai-arxiv"></i></span>
-                  <span>arXiv (coming soon)</span>
-                </span>
+                  <span>arXiv</span>
+                </a>
               </span>
               <span class="link-block">
-                <span class="external-link button is-normal is-rounded is-dark" style="opacity:0.65; cursor:default;">
+                <a href="https://arxiv.org/pdf/2609.04649"
+                   class="external-link button is-normal is-rounded is-dark">
+                  <span class="icon"><i class="fas fa-file-pdf"></i></span>
+                  <span>Paper</span>
+                </a>
+              </span>
+              <span class="link-block">
+                <a class="external-link button is-normal is-rounded is-dark">
                   <span class="icon"><i class="fab fa-github"></i></span>
                   <span>Code (coming soon)</span>
-                </span>
+                </a>
               </span>
             </div>
           </div>
@@ -560,20 +566,23 @@
 <!-- ============================================================
      BIBTEX
      ============================================================ -->
-<!-- <section class="section" id="BibTeX">
+<section class="section" id="BibTeX">
   <div class="container is-max-desktop">
     <div class="columns is-centered">
       <div class="column is-four-fifths">
         <h2 class="title">BibTeX</h2>
-        <pre><code>@misc{readit2026,
-  title   = {ReaDiT Guidance: Control for Image and Video Generation using Diffusion Transformer Features},
-  author  = {Anonymous},
-  year    = {2026}
+        <pre><code>@misc{mahajan2026readitguidancecontrolimage,
+      title={ReaDiT Guidance: Control for Image and Video Generation using Diffusion Transformer Features}, 
+      author={Jay Mahajan and Chang Liu and Rauf Makharov and Viraj Shah and Alexander Schwing and Svetlana Lazebnik},
+      year={2026},
+      eprint={2609.04649},
+      archivePrefix={arXiv},
+      url={https://arxiv.org/abs/2609.04649}
 }</code></pre>
       </div>
     </div>
   </div>
-</section> -->
+</section>
 
 
 <!-- ============================================================
