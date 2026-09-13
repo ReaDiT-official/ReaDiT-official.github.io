@@ -383,6 +383,131 @@
 
 
 <!-- ============================================================
+     SPATIAL VIDEO GUIDANCE — tabbed by task (Depth / Pose / Edge)
+     Grid per example: Input | No Guidance | Guidance
+     Videos: static/videos/spatial/{depth,pose,edge}/{input(s),unguided,guided}
+     Panels populated by svgInit()
+     ============================================================ -->
+<section class="section" style="padding-bottom:0.5rem;">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Spatial Video Guidance</h2>
+        <p>
+          Since modern text-to-video models are built on top of DiTs, ReaDiT can
+          seamlessly be applied to video generation. For each example we show the
+          control signal, an unguided generation, and the ReaDiT-guided result.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero is-light" style="margin-bottom:1rem;">
+  <div class="hero-body">
+    <div class="container">
+
+      <!-- Task tabs -->
+      <div class="pred-tabs">
+        <button class="pred-tab-btn tab-depth is-active" onclick="svgTab(this,'depth')">Depth</button>
+        <button class="pred-tab-btn tab-pose"            onclick="svgTab(this,'pose')">Pose</button>
+        <button class="pred-tab-btn tab-edge"            onclick="svgTab(this,'edge')">Edge</button>
+      </div>
+
+      <!-- panels populated by svgInit() -->
+      <div id="svg-panel-depth" class="svg-panel"></div>
+      <div id="svg-panel-pose"  class="svg-panel" style="display:none"></div>
+      <div id="svg-panel-edge"  class="svg-panel" style="display:none"></div>
+
+    </div>
+  </div>
+</section>
+
+
+<!-- ============================================================
+     MOTION GUIDANCE — one card per example, next/back carousel
+     Grid per example: Input Motion | No Guidance | Motion Captured | Guidance | Motion Captured
+     Videos: static/videos/spatial/motion/{input,unguided,unguided_motion,guided,guided_motion}
+     ============================================================ -->
+<section class="section" style="padding-bottom:0.5rem;">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered has-text-centered">
+      <div class="column is-four-fifths">
+        <h2 class="title is-3">Motion Guidance</h2>
+        <p>
+          ReaDiT can also be used to guide video generation given a motion input.
+          For each example we show the input motion, an unguided generation and its
+          captured motion, then the ReaDiT-guided result and its captured motion.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="hero is-light" style="margin-bottom:1rem;">
+  <div class="hero-body">
+    <div class="container motion-container">
+      <div id="motion-guidance-carousel" class="carousel results-carousel">
+        <!-- ── Castle ── -->
+        <div class="item">
+          <div class="svg-entry motion-card">
+            <div class="svg-entry-label">Castle</div>
+            <div class="svg-grid svg-grid-5">
+              <div class="svg-cell"><span class="svg-cell-label">Input Motion</span><video src="./static/videos/spatial/motion/input/castle.mp4" autoplay loop muted playsinline></video></div>
+              <div class="svg-cell"><span class="svg-cell-label">No Guidance</span><video src="./static/videos/spatial/motion/unguided/castle.mp4" autoplay loop muted playsinline></video></div>
+              <div class="svg-cell"><span class="svg-cell-label">Motion Captured</span><video src="./static/videos/spatial/motion/unguided_motion/castle.mp4" autoplay loop muted playsinline></video></div>
+              <div class="svg-cell"><span class="svg-cell-label">Guidance</span><video src="./static/videos/spatial/motion/guided/castle.mp4" autoplay loop muted playsinline></video></div>
+              <div class="svg-cell"><span class="svg-cell-label">Motion Captured</span><video src="./static/videos/spatial/motion/guided_motion/castle.mp4" autoplay loop muted playsinline></video></div>
+            </div>
+          </div>
+        </div>
+        <!-- ── Dock ── -->
+        <div class="item">
+          <div class="svg-entry motion-card">
+            <div class="svg-entry-label">Dock</div>
+            <div class="svg-grid svg-grid-5">
+              <div class="svg-cell"><span class="svg-cell-label">Input Motion</span><video src="./static/videos/spatial/motion/input/dock.mp4" autoplay loop muted playsinline></video></div>
+              <div class="svg-cell"><span class="svg-cell-label">No Guidance</span><video src="./static/videos/spatial/motion/unguided/dock.mp4" autoplay loop muted playsinline></video></div>
+              <div class="svg-cell"><span class="svg-cell-label">Motion Captured</span><video src="./static/videos/spatial/motion/unguided_motion/dock.mp4" autoplay loop muted playsinline></video></div>
+              <div class="svg-cell"><span class="svg-cell-label">Guidance</span><video src="./static/videos/spatial/motion/guided/dock.mp4" autoplay loop muted playsinline></video></div>
+              <div class="svg-cell"><span class="svg-cell-label">Motion Captured</span><video src="./static/videos/spatial/motion/guided_motion/dock.mp4" autoplay loop muted playsinline></video></div>
+            </div>
+          </div>
+        </div>
+        <!-- ── Mountain ── -->
+        <div class="item">
+          <div class="svg-entry motion-card">
+            <div class="svg-entry-label">Mountain</div>
+            <div class="svg-grid svg-grid-5">
+              <div class="svg-cell"><span class="svg-cell-label">Input Motion</span><video src="./static/videos/spatial/motion/input/mountain.mp4" autoplay loop muted playsinline></video></div>
+              <div class="svg-cell"><span class="svg-cell-label">No Guidance</span><video src="./static/videos/spatial/motion/unguided/mountain.mp4" autoplay loop muted playsinline></video></div>
+              <div class="svg-cell"><span class="svg-cell-label">Motion Captured</span><video src="./static/videos/spatial/motion/unguided_motion/mountain.mp4" autoplay loop muted playsinline></video></div>
+              <div class="svg-cell"><span class="svg-cell-label">Guidance</span><video src="./static/videos/spatial/motion/guided/mountain.mp4" autoplay loop muted playsinline></video></div>
+              <div class="svg-cell"><span class="svg-cell-label">Motion Captured</span><video src="./static/videos/spatial/motion/guided_motion/mountain.mp4" autoplay loop muted playsinline></video></div>
+            </div>
+          </div>
+        </div>
+        <!-- ── Sand ── -->
+        <div class="item">
+          <div class="svg-entry motion-card">
+            <div class="svg-entry-label">Sand</div>
+            <div class="svg-grid svg-grid-5">
+              <div class="svg-cell"><span class="svg-cell-label">Input Motion</span><video src="./static/videos/spatial/motion/input/sand.mp4" autoplay loop muted playsinline></video></div>
+              <div class="svg-cell"><span class="svg-cell-label">No Guidance</span><video src="./static/videos/spatial/motion/unguided/sand.mp4" autoplay loop muted playsinline></video></div>
+              <div class="svg-cell"><span class="svg-cell-label">Motion Captured</span><video src="./static/videos/spatial/motion/unguided_motion/sand.mp4" autoplay loop muted playsinline></video></div>
+              <div class="svg-cell"><span class="svg-cell-label">Guidance</span><video src="./static/videos/spatial/motion/guided/sand.mp4" autoplay loop muted playsinline></video></div>
+              <div class="svg-cell"><span class="svg-cell-label">Motion Captured</span><video src="./static/videos/spatial/motion/guided_motion/sand.mp4" autoplay loop muted playsinline></video></div>
+            </div>
+          </div>
+        </div>
+      </div><!-- /carousel -->
+    </div>
+  </div>
+</section>
+
+
+
+<!-- ============================================================
      DUAL GUIDANCE
      Consistent: figures/main_dual_consistent.pdf
      Inconsistent (interactive 2×2 matrix): figures/dual_inconsistent.pdf
@@ -645,7 +770,7 @@ function predInit() {
 }
 
 function predTab(btn, task) {
-  document.querySelectorAll('.pred-tab-btn')
+  btn.parentNode.querySelectorAll('.pred-tab-btn')
     .forEach(function(b) { b.classList.remove('is-active'); });
   document.querySelectorAll('.pred-panel')
     .forEach(function(p) { p.style.display = 'none'; });
@@ -750,9 +875,77 @@ function updateDualResult() {
     scene.label + ' depth  +  ' + pose.label + ' pose';
 }
 
+// Spatial Video Guidance — tabbed by task (Depth / Pose / Edge)
+// Each example renders a 3-column grid: Input | No Guidance | Guidance.
+// inputDir differs per task: depth uses 'input', pose/edge use 'inputs'.
+var svgData = {
+  depth: { inputDir: 'input',  label: 'Input Depth', items: [
+    { label: 'Statue',  base: 'statue' },
+    { label: 'Raccoon', base: 'raccoon' }
+  ]},
+  pose:  { inputDir: 'inputs', label: 'Input Pose',  items: [
+    { label: 'Paper Boats', base: 'paper-boats' },
+    { label: 'Painter',     base: 'painter' }
+  ]},
+  edge:  { inputDir: 'inputs', label: 'Input Edge',  items: [
+    { label: 'Cat',  base: 'cat' },
+    { label: 'Lion', base: 'lion' }
+  ]}
+};
+
+function svgInit() {
+  var root = './static/videos/spatial/';
+  ['depth','pose','edge'].forEach(function(task) {
+    var cfg = svgData[task];
+    var panel = document.getElementById('svg-panel-' + task);
+    cfg.items.forEach(function(item) {
+      var entry = document.createElement('div');
+      entry.className = 'svg-entry';
+
+      var lbl = document.createElement('div');
+      lbl.className = 'svg-entry-label';
+      lbl.textContent = item.label;
+      entry.appendChild(lbl);
+
+      var grid = document.createElement('div');
+      grid.className = 'svg-grid';
+      [
+        { label: cfg.label,     dir: cfg.inputDir },
+        { label: 'No Guidance', dir: 'unguided' },
+        { label: 'Guidance',    dir: 'guided' }
+      ].forEach(function(col) {
+        var cell = document.createElement('div');
+        cell.className = 'svg-cell';
+        var span = document.createElement('span');
+        span.className = 'svg-cell-label';
+        span.textContent = col.label;
+        var vid = document.createElement('video');
+        vid.src = root + task + '/' + col.dir + '/' + item.base + '.mp4';
+        vid.autoplay = true; vid.loop = true; vid.muted = true;
+        vid.setAttribute('playsinline', '');
+        cell.appendChild(span);
+        cell.appendChild(vid);
+        grid.appendChild(cell);
+      });
+      entry.appendChild(grid);
+      panel.appendChild(entry);
+    });
+  });
+}
+
+function svgTab(btn, task) {
+  btn.parentNode.querySelectorAll('.pred-tab-btn')
+    .forEach(function(b) { b.classList.remove('is-active'); });
+  document.querySelectorAll('.svg-panel')
+    .forEach(function(p) { p.style.display = 'none'; });
+  btn.classList.add('is-active');
+  document.getElementById('svg-panel-' + task).style.display = 'block';
+}
+
 document.addEventListener('DOMContentLoaded', function() {
   predInit();
   dualInit();
+  svgInit();
 });
 </script>
 

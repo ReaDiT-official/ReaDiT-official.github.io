@@ -428,6 +428,102 @@ body {
   display: block;
 }
 
+/* ── Spatial Video Guidance ── */
+.svg-panel {
+  max-width: 900px;
+  margin: 0 auto;
+}
+.svg-entry { margin-bottom: 2rem; }
+.svg-entry:last-child { margin-bottom: 0; }
+.svg-entry-label {
+  font-size: 1rem;
+  font-weight: 800;
+  font-family: 'Google Sans', sans-serif;
+  text-align: center;
+  margin-bottom: 0.6rem;
+  color: #4a4a4a;
+}
+.svg-panel-wide { max-width: 1200px; }
+
+/* Motion Guidance — one card per example */
+.motion-container {
+  width: 96vw;
+  max-width: 2400px;
+  margin-left: 50%;
+  transform: translateX(-50%);
+}
+/* Let the motion carousel use the full widened container */
+#motion-guidance-carousel.results-carousel {
+  max-width: 100%;
+}
+/* Gutter so the carousel prev/next arrows don't overlap the videos;
+   drop the default per-item border (the card supplies its own) */
+#motion-guidance-carousel .item {
+  padding: 0 3.5rem;
+  border: none;
+  border-radius: 0;
+}
+.motion-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 1.75rem 1.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+}
+.motion-card .svg-entry-label {
+  text-align: left;
+  font-size: 1.15rem;
+  padding-bottom: 0.7rem;
+  margin-bottom: 1.25rem;
+  border-bottom: 2px solid #dbe2ea;
+}
+.motion-card .svg-grid-5 {
+  gap: 0.9rem;
+}
+/* Group dividers: Input Motion | No Guidance + Motion Captured | Guidance + Motion Captured */
+.motion-card .svg-grid-5 .svg-cell:nth-child(1),
+.motion-card .svg-grid-5 .svg-cell:nth-child(3) {
+  position: relative;
+}
+.motion-card .svg-grid-5 .svg-cell:nth-child(1)::after,
+.motion-card .svg-grid-5 .svg-cell:nth-child(3)::after {
+  content: '';
+  position: absolute;
+  right: calc(-0.45rem - 1px);
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: #cbd5e1;
+}
+.svg-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+.svg-grid-5 {
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+}
+.svg-cell { display: flex; flex-direction: column; align-items: center; }
+.svg-cell-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #7a7a7a;
+  margin-bottom: 0.4rem;
+  text-align: center;
+}
+.svg-cell video {
+  width: 100%;
+  border-radius: 8px;
+  background: #000;
+  display: block;
+}
+@media (max-width: 560px) {
+  .svg-grid { grid-template-columns: 1fr; gap: 1rem; }
+}
+
 /* ---- Cascading dual selector (depth → pose) ---- */
 .dual-cascade {
   display: flex;
@@ -450,6 +546,7 @@ body {
   color: #888;
   margin-bottom: 0.55rem;
   font-family: 'Google Sans', sans-serif;
+  text-align: center;
 }
 
 .dual-thumb-row {
@@ -457,6 +554,7 @@ body {
   flex-direction: row;
   gap: 0.75rem;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .dual-thumb {
